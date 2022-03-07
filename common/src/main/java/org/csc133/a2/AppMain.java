@@ -27,9 +27,21 @@ class Game extends Form implements Runnable{
     {
         gw = new GameWorld();
 
+        addKeyListener('Q', (evt) -> gw.quit());
+        //other key listeners
+        addKeyListener(-91,(evt) -> gw.arrowUp());
+        addKeyListener(-93,(evt) -> gw.arrowLeft());
+        addKeyListener(-94,(evt) -> gw.arrowRight());
+        addKeyListener(-92,(evt) -> gw.arrowDown());
+//        addKeyListener('d',(evt) -> gw.drinkFromWater());
+//        addKeyListener('f',(evt) -> gw.fightFire());
+
         UITimer timer = new UITimer(this);
+        timer.schedule(100, true, this);
         this.getAllStyles().setBgColor(ColorUtil.BLACK);
         this.show();
+
+
     }
 
 
@@ -67,11 +79,12 @@ class GameWorld
         init();
     }
 
+
     void init()
     {
         helipad = new Helipad();
         river = new River();
-        helicopter = new Helicopter();
+        helicopter = new Helicopter(DISP_W,DISP_H);
         fire = new Fire(300,30,50);
         fire2 = new Fire(1500,25,50);
         fire3 = new Fire(DISP_W/2,DISP_H/2+50,50);
@@ -79,16 +92,42 @@ class GameWorld
 
     void draw(Graphics g)
     {
-        helicopter.drawHelicopter(g);
         helipad.drawHelipad(g);
         river.drawRiver(g);
         fire.drawFire(g);
         fire2.drawFire(g);
         fire3.drawFire(g);
+        helicopter.drawHelicopter(g);
     }
 
     public void tick()
     {
+        helicopter.reduceFuel();
+        helicopter.goForward();
+    }
 
+    public void arrowUp()
+    {
+        helicopter.increaseSpeed();
+    }
+
+    public void arrowLeft()
+    {
+        helicopter.steerLeft();
+    }
+
+    public void arrowRight()
+    {
+        helicopter.steerRight();
+    }
+
+    public void arrowDown()
+    {
+        helicopter.decreaseSpeed();
+    }
+
+    public void quit()
+    {
+        Display.getInstance().exitApplication();
     }
 }
