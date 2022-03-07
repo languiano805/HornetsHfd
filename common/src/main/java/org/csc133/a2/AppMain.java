@@ -3,6 +3,7 @@ package org.csc133.a2;
 
 
 import com.codename1.charts.util.ColorUtil;
+import com.codename1.components.ButtonList;
 import com.codename1.system.Lifecycle;
 import com.codename1.ui.*;
 
@@ -71,6 +72,7 @@ class GameWorld
     private Fire fire;
     private Fire fire2;
     private Fire fire3;
+    private Building building;
 
 
 
@@ -82,12 +84,15 @@ class GameWorld
 
     void init()
     {
+        //MUST GET RID OF MAGIC NUMBERS
         helipad = new Helipad();
         river = new River();
-        helicopter = new Helicopter(DISP_W,DISP_H);
+        building = new Building(200,DISP_H/2);
+
         fire = new Fire(300,30,50);
         fire2 = new Fire(1500,25,50);
         fire3 = new Fire(DISP_W/2,DISP_H/2+50,50);
+        helicopter = new Helicopter(DISP_W,DISP_H);
     }
 
     void draw(Graphics g)
@@ -98,6 +103,7 @@ class GameWorld
         fire2.drawFire(g);
         fire3.drawFire(g);
         helicopter.drawHelicopter(g);
+        building.drawBuilding(g);
     }
 
     public void tick()

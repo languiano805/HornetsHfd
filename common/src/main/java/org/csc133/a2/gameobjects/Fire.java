@@ -3,8 +3,9 @@ package org.csc133.a2.gameobjects;
 import com.codename1.charts.util.ColorUtil;
 import com.codename1.ui.Graphics;
 import com.codename1.ui.geom.Point;
+import org.csc133.a2.interfaces.Drawable;
 
-public class Fire
+public class Fire implements Drawable
 {
     private int x;
     private int y;
@@ -31,4 +32,8 @@ public class Fire
         g.setColor(ColorUtil.YELLOW);
     }
 
+    @Override
+    public void draw(Graphics g, Point containerOrgin) {
+
+    }
 }

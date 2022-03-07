@@ -4,12 +4,13 @@ import com.codename1.charts.util.ColorUtil;
 import com.codename1.ui.Display;
 import com.codename1.ui.Graphics;
 import com.codename1.ui.geom.Point;
+import org.csc133.a2.interfaces.Drawable;
 
 /**
  * this class represents a single fire turning on the abstract campus.
  * The fire is represented on the screen by a magenta circle.
  */
-public class Helipad
+public class Helipad implements Drawable
 {
     final static int DISP_W = Display.getInstance().getDisplayWidth();
     final static int DISP_H = Display.getInstance().getDisplayHeight();
@@ -30,6 +31,11 @@ public class Helipad
         //CHANGE THE -10 NEED TO MAKE IT SCALABLE
         g.drawRect(helipadCenter.getX() - 10, helipadCenter.getY() - 10,
                 (int) (sizeOfHelipad * 1.15), (int) (sizeOfHelipad * 1.15), 5);
+
+    }
+
+    @Override
+    public void draw(Graphics g, Point containerOrgin) {
 
     }
 }
