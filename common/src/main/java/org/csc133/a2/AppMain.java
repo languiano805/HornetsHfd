@@ -73,6 +73,8 @@ class GameWorld
     private Fire fire2;
     private Fire fire3;
     private Building building;
+    private Building building2;
+    private Building building3;
 
 
 
@@ -87,7 +89,10 @@ class GameWorld
         //MUST GET RID OF MAGIC NUMBERS
         helipad = new Helipad();
         river = new River();
-        building = new Building(200,DISP_H/2);
+
+        building = new Building((int) (DISP_W*0.09),DISP_H/2, 0, 0);
+        building2 = new Building((int) (DISP_W*0.8),(int)(DISP_H/2+DISP_H*0.09),0, (int) -(DISP_H*0.09));
+        building3 = new Building((int) (DISP_W*0.14), (int) (DISP_H*0.05), (int) (DISP_W*0.6), (int) -(DISP_H*0.3));
 
         fire = new Fire(300,30,50);
         fire2 = new Fire(1500,25,50);
@@ -104,6 +109,8 @@ class GameWorld
         fire3.drawFire(g);
         helicopter.drawHelicopter(g);
         building.drawBuilding(g);
+        building2.drawBuilding(g);
+        building3.drawBuilding(g);
     }
 
     public void tick()

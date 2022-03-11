@@ -13,19 +13,23 @@ public class Building implements Drawable
 
     private int x;
     private int y;
+    private int w;
+    private int h;
 
-    public Building(int x, int y)
+    public Building(int x, int y, int w, int h)
     {
         this.x =x;
         this.y = y;
+        this.w = w;
+        this.h = h;
     }
 
     public void drawBuilding(Graphics g)
     {
         //MAY NEED TO PASS IN WIDTH AND LENGTH OF BUILDINGS
         g.setColor(ColorUtil.rgb(250,0,0));
-        g.drawRect(x,y,DISP_W/8,
-                (int) (DISP_H*0.4));
+        g.drawRect(x,y,DISP_W/8+w,
+                (int) (DISP_H*0.4)+h);
     }
 
     @Override
