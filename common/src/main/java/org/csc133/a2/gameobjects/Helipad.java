@@ -10,7 +10,7 @@ import org.csc133.a2.interfaces.Drawable;
  * this class represents a single fire turning on the abstract campus.
  * The fire is represented on the screen by a magenta circle.
  */
-public class Helipad implements Drawable
+public class Helipad extends Fixed
 {
     final static int DISP_W = Display.getInstance().getDisplayWidth();
     final static int DISP_H = Display.getInstance().getDisplayHeight();
@@ -35,7 +35,7 @@ public class Helipad implements Drawable
     }
 
     @Override
-    public void draw(Graphics g, Point containerOrgin) {
+    public void draw(Graphics g, Point containerOrigin) {
 
     }
 }

@@ -4,8 +4,6 @@ import com.codename1.charts.util.ColorUtil;
 import com.codename1.ui.Display;
 import com.codename1.ui.Graphics;
 import com.codename1.ui.geom.Point;
-import org.csc133.a2.interfaces.Drawable;
-import org.csc133.a2.interfaces.Steerable;
 
 
 /**
@@ -15,7 +13,7 @@ import org.csc133.a2.interfaces.Steerable;
  * circle with a line emanating from the center of
  * the circle pointing in the direction of the helicopters heading.
  */
-public class Helicopter implements Steerable, Drawable
+public class Helicopter extends Movable
 {
     final static int DISP_W = Display.getInstance().getDisplayWidth();
     final static int DISP_H = Display.getInstance().getDisplayHeight();
@@ -138,9 +136,4 @@ public class Helicopter implements Steerable, Drawable
         g.fillArc(location.getX(),location.getY(),size,size,0,360);
     }
 
-
-    @Override
-    public void draw(Graphics g, Point containerOrgin) {
-
-    }
 }

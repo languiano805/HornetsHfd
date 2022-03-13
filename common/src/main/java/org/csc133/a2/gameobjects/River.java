@@ -11,7 +11,7 @@ import org.csc133.a2.interfaces.Drawable;
  * Abstract the river as a simple open blue rectangle approximately
  * One third from the tip of the game window
  */
-public class River implements Drawable
+public class River extends Fixed
 {
     final static int DISP_W = Display.getInstance().getDisplayWidth();
     final static int DISP_H = Display.getInstance().getDisplayHeight();
@@ -30,7 +30,7 @@ public class River implements Drawable
     }
 
     @Override
-    public void draw(Graphics g, Point containerOrgin) {
+    public void draw(Graphics g, Point containerOrigin) {
 
     }
 }

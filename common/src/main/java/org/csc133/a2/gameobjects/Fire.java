@@ -5,7 +5,7 @@ import com.codename1.ui.Graphics;
 import com.codename1.ui.geom.Point;
 import org.csc133.a2.interfaces.Drawable;
 
-public class Fire implements Drawable
+public class Fire extends Fixed
 {
     private int x;
     private int y;
@@ -32,8 +32,9 @@ public class Fire implements Drawable
         g.setColor(ColorUtil.YELLOW);
     }
 
+
     @Override
-    public void draw(Graphics g, Point containerOrgin) {
+    public void draw(Graphics g, Point containerOrigin) {
 
     }
 }

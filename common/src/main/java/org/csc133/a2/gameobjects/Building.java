@@ -4,10 +4,9 @@ import com.codename1.charts.util.ColorUtil;
 import com.codename1.ui.Display;
 import com.codename1.ui.Graphics;
 import com.codename1.ui.geom.Point;
-import org.csc133.a2.interfaces.Drawable;
 
-public class Building implements Drawable
-{
+
+public class Building extends Fixed {
     final static int DISP_W = Display.getInstance().getDisplayWidth();
     final static int DISP_H = Display.getInstance().getDisplayHeight();
 
@@ -33,7 +32,7 @@ public class Building implements Drawable
     }
 
     @Override
-    public void draw(Graphics g, Point containerOrgin) {
+    public void draw(Graphics g, Point containerOrigin) {
 
     }
 }
