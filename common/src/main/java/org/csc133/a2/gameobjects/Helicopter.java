@@ -136,4 +136,8 @@ public class Helicopter extends Movable
         g.fillArc(location.getX(),location.getY(),size,size,0,360);
     }
 
+    @Override
+    public void draw(Graphics g, Point containerOrigin) {
+
+    }
 }

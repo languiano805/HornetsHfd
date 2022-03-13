@@ -31,6 +31,7 @@ public class Building extends Fixed {
                 (int) (DISP_H*0.4)+h);
     }
 
+
     @Override
     public void draw(Graphics g, Point containerOrigin) {
 

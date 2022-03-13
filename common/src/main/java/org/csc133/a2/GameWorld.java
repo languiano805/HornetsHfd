@@ -4,6 +4,8 @@ import com.codename1.ui.Display;
 import com.codename1.ui.Graphics;
 import org.csc133.a2.gameobjects.*;
 
+import java.util.concurrent.CopyOnWriteArrayList;
+
 class GameWorld {
     final static int DISP_W = Display.getInstance().getDisplayWidth();
     final static int DISP_H = Display.getInstance().getDisplayHeight();
@@ -17,6 +19,8 @@ class GameWorld {
     private Building building;
     private Building building2;
     private Building building3;
+
+    private CopyOnWriteArrayList<GameObject> gameObjects;
 
 
     public GameWorld() {
@@ -39,6 +43,18 @@ class GameWorld {
         fire2 = new Fire(1500, 25, 50);
         fire3 = new Fire(DISP_W / 2, DISP_H / 2 + 50, 50);
         helicopter = new Helicopter(DISP_W, DISP_H);
+
+        gameObjects = new CopyOnWriteArrayList<>();
+
+        gameObjects.add(helipad);
+        gameObjects.add(river);
+        gameObjects.add(building);
+        gameObjects.add(building2);
+        gameObjects.add(building3);
+        gameObjects.add(fire);
+        gameObjects.add(fire2);
+        gameObjects.add(fire3);
+        gameObjects.add(helicopter);
     }
 
     void draw(Graphics g) {

@@ -9,7 +9,7 @@ import org.csc133.a2.interfaces.Drawable;
  * game objects.
  */
 
-public class GameObject
+public abstract class GameObject implements Drawable
 {
 
 }

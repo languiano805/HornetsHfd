@@ -12,6 +12,8 @@ class Game extends Form implements Runnable {
     public Game() {
         gw = new GameWorld();
 
+
+
         addKeyListener('Q', (evt) -> gw.quit());
         //other key listeners
         addKeyListener(-91, (evt) -> gw.arrowUp());
