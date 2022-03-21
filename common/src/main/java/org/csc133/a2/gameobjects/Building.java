@@ -34,6 +34,6 @@ public class Building extends Fixed {
 
     @Override
     public void draw(Graphics g, Point containerOrigin) {
-
+        drawBuilding(g);
     }
 }

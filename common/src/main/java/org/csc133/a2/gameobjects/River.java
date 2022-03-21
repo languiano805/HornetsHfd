@@ -23,7 +23,7 @@ public class River extends Fixed
     public River(Dimension worldSize) {
         this.worldSize = worldSize;
         this.color = ColorUtil.BLUE;
-        this.location = new Point2D(0, (int)(worldSize.getHeight()*4/5) );
+        this.location = new Point2D(0, worldSize.getHeight());
         this.dimension =  new Dimension(worldSize.getWidth(),worldSize.getHeight());
 
         sizeOfRiver = (int) (DISP_H * 0.2);
@@ -39,10 +39,10 @@ public class River extends Fixed
     public void draw(Graphics g, Point containerOrigin) {
         g.setColor(color);
         int x = containerOrigin.getX() + (int)location.getX();
-        int y = containerOrigin.getY() + (int)location.getY() - worldSize.getHeight();
+        int y = containerOrigin.getY() + (int)location.getY()-worldSize.getHeight();
         int w = dimension.getWidth();
-        int h = dimension.getHeight();
-        g.drawRect(x,y,w,h);
+        int h = (int) (dimension.getHeight());
+        g.drawRect(x, (int) (y*3.5),w, (int) (h/8.5),3);
 
     }
 }
