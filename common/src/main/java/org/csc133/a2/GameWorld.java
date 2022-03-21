@@ -2,13 +2,15 @@ package org.csc133.a2;
 
 import com.codename1.ui.Display;
 import com.codename1.ui.Graphics;
+import com.codename1.ui.geom.Dimension;
 import org.csc133.a2.gameobjects.*;
+import java.util.ArrayList;
 
-import java.util.concurrent.CopyOnWriteArrayList;
-
-class GameWorld {
+public class GameWorld {
     final static int DISP_W = Display.getInstance().getDisplayWidth();
     final static int DISP_H = Display.getInstance().getDisplayHeight();
+
+    Dimension worldSize;
 
     private Helipad helipad;
     private River river;
@@ -20,18 +22,19 @@ class GameWorld {
     private Building building2;
     private Building building3;
 
-    private CopyOnWriteArrayList<GameObject> gameObjects;
+    private ArrayList<GameObject> gameObjects;
 
 
     public GameWorld() {
-        init();
+        //worldSize = new Dimension();
     }
 
 
-    void init() {
+    public void init() {
+
         //MUST GET RID OF MAGIC NUMBERS
         helipad = new Helipad();
-        river = new River();
+        river = new River(worldSize);
 
         building = new Building((int) (DISP_W * 0.09), DISP_H / 2, 0, 0);
         building2 = new Building((int) (DISP_W * 0.8),
@@ -44,7 +47,7 @@ class GameWorld {
         fire3 = new Fire(DISP_W / 2, DISP_H / 2 + 50, 50);
         helicopter = new Helicopter(DISP_W, DISP_H);
 
-        gameObjects = new CopyOnWriteArrayList<>();
+        gameObjects = new ArrayList<>();
 
         gameObjects.add(helipad);
         gameObjects.add(river);
@@ -59,7 +62,7 @@ class GameWorld {
 
     void draw(Graphics g) {
         helipad.drawHelipad(g);
-        river.drawRiver(g);
+        //river.drawRiver(g);
         fire.drawFire(g);
         fire2.drawFire(g);
         fire3.drawFire(g);
@@ -92,5 +95,39 @@ class GameWorld {
 
     public void quit() {
         Display.getInstance().exitApplication();
+    }
+
+    public ArrayList<GameObject> getGameObjectCollection()
+    {
+        return gameObjects;
+    }
+
+    public String getNumberOfHeading() {
+        return "0";
+    }
+
+    public String getNumberOfSpeed() {
+        return "0";
+    }
+
+    public String getNumberOfFuel() {
+        return "0";
+    }
+
+    public String getNumberOfFires() {
+        return "0";
+    }
+
+    public String getNumberOfLoss() {
+        return "0";
+    }
+
+    public String getNumberOfDamage() {
+        return "0";
+    }
+
+    public void setDimension(Dimension worldSize)
+    {
+        this.worldSize = worldSize;
     }
 }

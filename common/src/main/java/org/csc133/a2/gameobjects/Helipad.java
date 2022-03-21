@@ -36,6 +36,6 @@ public class Helipad extends Fixed
 
     @Override
     public void draw(Graphics g, Point containerOrigin) {
-
+        drawHelipad(g);
     }
 }

@@ -3,14 +3,29 @@ package org.csc133.a2;
 import com.codename1.charts.util.ColorUtil;
 import com.codename1.ui.Form;
 import com.codename1.ui.Graphics;
+import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.util.UITimer;
-
+import org.csc133.a2.views.ControlCluster;
+import org.csc133.a2.views.MapView;
+import org.csc133.a2.views.StatusView;
 
 class Game extends Form implements Runnable {
     private GameWorld gw;
+    MapView worldView;
+    StatusView statusView;
+    ControlCluster controlView;
 
     public Game() {
         gw = new GameWorld();
+
+        worldView = new MapView(gw);
+        statusView = new StatusView(gw);
+        controlView = new ControlCluster(gw);
+
+        this.setLayout(new BorderLayout());
+        this.add(BorderLayout.NORTH, statusView);
+        this.add(BorderLayout.CENTER,worldView);
+        this.add(BorderLayout.SOUTH, controlView);
 
 
 
@@ -35,12 +50,13 @@ class Game extends Form implements Runnable {
     @Override
     public void run() {
         gw.tick();
+        statusView.update();
         repaint();
     }
 
     public void paint(Graphics g) {
         super.paint(g);
-        gw.draw(g);
+        //gw.draw(g);
     }
 
 }
