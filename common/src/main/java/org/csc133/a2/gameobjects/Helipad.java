@@ -19,15 +19,15 @@ public class Helipad extends Fixed
     private Point helipadCenter;
     private int sizeOfHelipad;
 
+    //need to watch how he draws the cloud 
     public Helipad(Dimension worldSize) {
         this.worldSize = worldSize;
         this.color = ColorUtil.GRAY;
-        this.location = new Point2D(worldSize.getWidth()-sizeOfHelipad/2,
-                worldSize.getHeight()/10-sizeOfHelipad/2);
+        sizeOfHelipad = (int) (DISP_W * 0.07);
+        this.location = new Point2D(worldSize.getWidth()/2-sizeOfHelipad/2,
+                worldSize.getHeight()*0.7+sizeOfHelipad/2);
         this.dimension = new Dimension(worldSize.getWidth(),worldSize.getHeight());
 
-
-        sizeOfHelipad = (int) (DISP_W * 0.07);
         helipadCenter = new Point(DISP_W / 2 - sizeOfHelipad / 2,
                 DISP_H - DISP_H / 7 - sizeOfHelipad / 2);
     }
@@ -45,9 +45,10 @@ public class Helipad extends Fixed
     @Override
     public void draw(Graphics g, Point containerOrigin) {
         g.setColor(color);
-        int x;
-        int y;
-        int w;
-        int h;
+        int x = (int) (containerOrigin.getX() + location.getX());
+        int y = (int) (containerOrigin.getY() + location.getY());
+        int w = sizeOfHelipad;
+        int h = sizeOfHelipad;
+        g.drawRect(x,y,w,h,5);
     }
 }

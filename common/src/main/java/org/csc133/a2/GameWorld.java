@@ -33,7 +33,7 @@ public class GameWorld {
     public void init() {
 
         //MUST GET RID OF MAGIC NUMBERS
-        helipad = new Helipad();
+        helipad = new Helipad(worldSize);
         river = new River(worldSize);
 
         building = new Building((int) (DISP_W * 0.09), DISP_H / 2, 0, 0);
@@ -61,7 +61,7 @@ public class GameWorld {
     }
 
     void draw(Graphics g) {
-        helipad.drawHelipad(g);
+        //helipad.drawHelipad(g);
         //river.drawRiver(g);
         fire.drawFire(g);
         fire2.drawFire(g);
