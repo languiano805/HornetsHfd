@@ -3,7 +3,9 @@ package org.csc133.a2.gameobjects;
 import com.codename1.charts.util.ColorUtil;
 import com.codename1.ui.Display;
 import com.codename1.ui.Graphics;
+import com.codename1.ui.geom.Dimension;
 import com.codename1.ui.geom.Point;
+import com.codename1.ui.geom.Point2D;
 
 
 public class Building extends Fixed {
@@ -15,9 +17,14 @@ public class Building extends Fixed {
     private int w;
     private int h;
 
-    public Building(int x, int y, int w, int h)
+    public Building(Dimension worldSize, int x, int y, int w, int h)
     {
-        this.x =x;
+        this.worldSize = worldSize;
+        this.color = ColorUtil.rgb(255,0,0);
+        this.location = new Point2D(0,worldSize.getHeight());
+        this.dimension = new Dimension(worldSize.getWidth(),worldSize.getHeight());
+
+        this.x = x;
         this.y = y;
         this.w = w;
         this.h = h;
@@ -34,6 +41,11 @@ public class Building extends Fixed {
 
     @Override
     public void draw(Graphics g, Point containerOrigin) {
-        drawBuilding(g);
+        g.setColor(color);
+        int x2 = containerOrigin.getX()+x;
+        int y2 = containerOrigin.getY()+y;
+        int w2 = dimension.getWidth()/8+w;
+        int h2 = (int) (dimension.getHeight()*0.4)+h;
+        g.drawRect(x2,y2,w2,h2);
     }
 }

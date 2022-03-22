@@ -36,11 +36,12 @@ public class GameWorld {
         helipad = new Helipad(worldSize);
         river = new River(worldSize);
 
-        building = new Building((int) (DISP_W * 0.09), DISP_H / 2, 0, 0);
-        building2 = new Building((int) (DISP_W * 0.8),
-                (int) (DISP_H / 2 + DISP_H * 0.09), 0, (int) -(DISP_H * 0.09));
-        building3 = new Building((int) (DISP_W * 0.14), (int) (DISP_H * 0.05),
-                (int) (DISP_W * 0.6), (int) -(DISP_H * 0.3));
+        //CHANGE THESE COORDS TO FIT BETTER TO SCREEN
+        building = new Building(worldSize,(int) (DISP_W * 0.09), DISP_H / 2, 0, 0);
+        building2 = new Building(worldSize,(int) (DISP_W * 0.8),
+                (int) (DISP_H / 2 + DISP_H * 0.07), 0, (int) -(DISP_H * 0.09));
+        building3 = new Building(worldSize,(int) (DISP_W * 0.14), (int) (DISP_H * 0.03),
+                (int) (DISP_W * 0.6), (int) -(DISP_H * 0.25));
 
         fire = new Fire(300, 30, 50);
         fire2 = new Fire(1500, 25, 50);
