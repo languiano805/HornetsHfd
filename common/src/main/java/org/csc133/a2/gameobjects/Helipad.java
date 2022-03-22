@@ -50,5 +50,6 @@ public class Helipad extends Fixed
         int w = sizeOfHelipad;
         int h = sizeOfHelipad;
         g.drawRect(x,y,w,h,5);
+        g.drawArc((int)(x*1.01),(int)(y*1.005),(int)(sizeOfHelipad*0.9),(int)(sizeOfHelipad*0.9),0,360);
     }
 }
