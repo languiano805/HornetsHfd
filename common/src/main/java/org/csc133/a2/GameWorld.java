@@ -46,7 +46,7 @@ public class GameWorld {
         fire = new Fire(300, 30, 50);
         fire2 = new Fire(1500, 25, 50);
         fire3 = new Fire(DISP_W / 2, DISP_H / 2 + 50, 50);
-        helicopter = new Helicopter(worldSize,DISP_W, DISP_H);
+        helicopter = new Helicopter(worldSize);
 
         gameObjects = new ArrayList<>();
 
@@ -61,21 +61,22 @@ public class GameWorld {
         gameObjects.add(helicopter);
     }
 
-    void draw(Graphics g) {
-        //helipad.drawHelipad(g);
-        //river.drawRiver(g);
-        fire.drawFire(g);
-        fire2.drawFire(g);
-        fire3.drawFire(g);
-        helicopter.drawHelicopter(g);
-        building.drawBuilding(g);
-        building2.drawBuilding(g);
-        building3.drawBuilding(g);
-    }
+//    void draw(Graphics g) {
+//        //helipad.drawHelipad(g);
+//        //river.drawRiver(g);
+//        fire.drawFire(g);
+//        fire2.drawFire(g);
+//        fire3.drawFire(g);
+//        //helicopter.draw(g);
+//        building.drawBuilding(g);
+//        building2.drawBuilding(g);
+//        building3.drawBuilding(g);
+//    }
 
     public void tick() {
         helicopter.reduceFuel();
         helicopter.goForward();
+
     }
 
     public void arrowUp() {
