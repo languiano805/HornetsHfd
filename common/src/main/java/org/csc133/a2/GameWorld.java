@@ -46,7 +46,7 @@ public class GameWorld {
         fire = new Fire(300, 30, 50);
         fire2 = new Fire(1500, 25, 50);
         fire3 = new Fire(DISP_W / 2, DISP_H / 2 + 50, 50);
-        helicopter = new Helicopter(DISP_W, DISP_H);
+        helicopter = new Helicopter(worldSize,DISP_W, DISP_H);
 
         gameObjects = new ArrayList<>();
 

@@ -3,7 +3,9 @@ package org.csc133.a2.gameobjects;
 import com.codename1.charts.util.ColorUtil;
 import com.codename1.ui.Display;
 import com.codename1.ui.Graphics;
+import com.codename1.ui.geom.Dimension;
 import com.codename1.ui.geom.Point;
+import com.codename1.ui.geom.Point2D;
 
 
 /**
@@ -22,7 +24,7 @@ public class Helicopter extends Movable
     private int water = 0;
     private int fuel = 25000;
     private int speed = 0;
-    Point location;
+    Point locationOfHelicopter;
     Point centerOfCircle;
     Point lineEndPoint;
     double rotateAmount;
@@ -30,16 +32,20 @@ public class Helicopter extends Movable
     int x;
     int y;
 
-    public Helicopter(int x, int y)
+    public Helicopter(Dimension worldSize, int x, int y)
     {
+        this.worldSize = worldSize;
+        this.color = ColorUtil.YELLOW;
+        this.location = new Point2D(worldSize.getWidth(),worldSize.getHeight());
+        this.dimension = new Dimension(worldSize.getWidth(),worldSize.getHeight());
 
         this.x = x;
         this.y = y;
         distance = size*2;
         rotateAmount = 0;
-        location = new Point(getStartingX(),getStartingY());
-        centerOfCircle = new Point(location.getX()+size/2,
-                location.getY()+size/2);
+        locationOfHelicopter = new Point(getStartingX(),getStartingY());
+        centerOfCircle = new Point(locationOfHelicopter.getX()+size/2,
+                locationOfHelicopter.getY()+size/2);
         lineEndPoint = new Point( (int) ((distance)*Math.sin(rotateAmount)
                 + centerOfCircle.getX()),
                 (int)((distance)*(-Math.cos(rotateAmount)))
@@ -133,11 +139,11 @@ public class Helicopter extends Movable
                 centerOfCircle.getY()+50);
         g.drawLine(centerOfCircle.getX(),centerOfCircle.getY(),
                 lineEndPoint.getX(),lineEndPoint.getY());
-        g.fillArc(location.getX(),location.getY(),size,size,0,360);
+        g.fillArc(locationOfHelicopter.getX(),locationOfHelicopter.getY(),size,size,0,360);
     }
 
     @Override
     public void draw(Graphics g, Point containerOrigin) {
-
+        drawHelicopter(g);
     }
 }

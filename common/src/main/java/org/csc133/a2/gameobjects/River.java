@@ -39,10 +39,12 @@ public class River extends Fixed
     public void draw(Graphics g, Point containerOrigin) {
         g.setColor(color);
         int x = containerOrigin.getX() + (int)location.getX();
-        int y = containerOrigin.getY() + (int)location.getY()-worldSize.getHeight();
+        int y = (int) ((containerOrigin.getY() + location.getY() - worldSize.getHeight())*3.5);
         int w = dimension.getWidth();
-        int h = (int) (dimension.getHeight());
-        g.drawRect(x, (int) (y*3.5),w, (int) (h/8.5),3);
+        int h = (int) (dimension.getHeight()/8.5);
+        g.drawRect(x,y,w, h,3);
+        g.drawString("lower",100,h);
+        g.drawString("upper",100,y);
 
     }
 }
