@@ -109,7 +109,7 @@ public class GameWorld {
     }
 
     public String getNumberOfSpeed() {
-        return "0";
+        return String.valueOf(helicopter.getSpeed());
     }
 
     public String getNumberOfFuel() {

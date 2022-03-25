@@ -91,7 +91,7 @@ public class Helicopter extends Movable
     public void steerRight()
     {
         rotateAmount+=Math.PI/6.0;
-        lineEndPoint = new Point2D((int)(((distance)* Math.sin(rotateAmount)) + centerOfCircle.getX()),
+        lineEndPoint = new Point2D((int)(((distance) * Math.sin(rotateAmount)) + centerOfCircle.getX()),
                 (int)((((distance)* -Math.cos(rotateAmount))
                         +centerOfCircle.getY())));
     }
@@ -108,6 +108,11 @@ public class Helicopter extends Movable
         {
             speed--;
         }
+    }
+
+    public int getSpeed()
+    {
+        return speed;
     }
 //    public int getX(){
 //        return (x/2)-size/2;
