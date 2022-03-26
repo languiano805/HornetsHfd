@@ -9,7 +9,7 @@ import org.csc133.a2.views.ControlCluster;
 import org.csc133.a2.views.MapView;
 import org.csc133.a2.views.StatusView;
 
-class Game extends Form implements Runnable {
+public class Game extends Form implements Runnable {
     private GameWorld gw;
     MapView worldView;
     StatusView statusView;
@@ -27,8 +27,6 @@ class Game extends Form implements Runnable {
         this.add(BorderLayout.CENTER,worldView);
         this.add(BorderLayout.SOUTH, controlView);
 
-
-
         addKeyListener('Q', (evt) -> gw.quit());
         //other key listeners
         addKeyListener(-91, (evt) -> gw.arrowUp());
@@ -37,6 +35,8 @@ class Game extends Form implements Runnable {
         addKeyListener(-92, (evt) -> gw.arrowDown());
 //        addKeyListener('d',(evt) -> gw.drinkFromWater());
 //        addKeyListener('f',(evt) -> gw.fightFire());
+
+
 
         UITimer timer = new UITimer(this);
         timer.schedule(100, true, this);
@@ -52,11 +52,11 @@ class Game extends Form implements Runnable {
         gw.tick();
         statusView.update();
         repaint();
+
     }
 
     public void paint(Graphics g) {
         super.paint(g);
-        //gw.draw(g);
     }
 
 }

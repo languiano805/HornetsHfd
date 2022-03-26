@@ -114,12 +114,6 @@ public class Helicopter extends Movable
     {
         return speed;
     }
-//    public int getX(){
-//        return (x/2)-size/2;
-//    }
-//    public int getY(){
-//        return (y-y/7);
-//    }
 
     public void reduceFuel()
     {
@@ -159,6 +153,9 @@ public class Helicopter extends Movable
         //for end line
         int x3 = (int) (containerOrigin.getX() + lineEndPoint.getX());
         int y3 = (int) (containerOrigin.getY() + lineEndPoint.getY());
+
+        g.drawString("W: " + water, x2+35, y2+35);
+        g.drawString("F: " + fuel, x2+35, y2+60);
 
         g.setColor(color);
         g.drawLine(x2,y2,x3,y3);

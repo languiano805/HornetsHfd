@@ -35,6 +35,7 @@ public class StatusView extends Container
         fireSizeCount = new Label("0");
         damageCount = new Label("0");
         lossCount = new Label("0");
+
         this.add(headingCount);
         this.add(speedCount);
         this.add(fuelCount);
@@ -52,6 +53,7 @@ public class StatusView extends Container
         firesCount.setText(gw.getNumberOfFires());
         damageCount.setText(gw.getNumberOfDamage());
         lossCount.setText(gw.getNumberOfLoss());
+
 
     }
 

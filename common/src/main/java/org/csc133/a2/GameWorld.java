@@ -1,8 +1,9 @@
 package org.csc133.a2;
 
 import com.codename1.ui.Display;
-import com.codename1.ui.Graphics;
 import com.codename1.ui.geom.Dimension;
+import org.csc133.a2.commands.goForwardCommand;
+import org.csc133.a2.commands.turnLeftCommand;
 import org.csc133.a2.gameobjects.*;
 import java.util.ArrayList;
 
@@ -26,7 +27,7 @@ public class GameWorld {
 
 
     public GameWorld() {
-        //worldSize = new Dimension();
+
     }
 
 
@@ -76,34 +77,15 @@ public class GameWorld {
     public void tick() {
         helicopter.reduceFuel();
         helicopter.goForward();
-
     }
 
-    public void arrowUp() {
-        helicopter.increaseSpeed();
-    }
-
-    public void arrowLeft() {
-        helicopter.steerLeft();
-    }
-
-    public void arrowRight() {
-        helicopter.steerRight();
-    }
-
-    public void arrowDown() {
-        helicopter.decreaseSpeed();
-    }
-
-    public void quit() {
-        Display.getInstance().exitApplication();
-    }
 
     public ArrayList<GameObject> getGameObjectCollection()
     {
         return gameObjects;
     }
 
+    /////////////////////////
     public String getNumberOfHeading() {
         return "0";
     }
@@ -113,7 +95,7 @@ public class GameWorld {
     }
 
     public String getNumberOfFuel() {
-        return "0";
+        return String.valueOf(helicopter.getFuel());
     }
 
     public String getNumberOfFires() {
@@ -132,4 +114,27 @@ public class GameWorld {
     {
         this.worldSize = worldSize;
     }
+
+    /////////////////////////
+
+    public void arrowUp() {
+        goForwardCommand.goForward(helicopter);
+    }
+
+    public void arrowLeft() {
+        turnLeftCommand.turnLeft(helicopter);
+    }
+
+    public void arrowRight() {
+        helicopter.steerRight();
+    }
+
+    public void arrowDown() {
+        helicopter.decreaseSpeed();
+    }
+
+    public void quit() {
+        Display.getInstance().exitApplication();
+    }
+
 }
