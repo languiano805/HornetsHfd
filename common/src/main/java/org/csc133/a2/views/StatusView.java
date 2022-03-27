@@ -51,9 +51,9 @@ public class StatusView extends Container
         speedCount.setText(gw.getNumberOfSpeed());
         fuelCount.setText(gw.getNumberOfFuel());
         firesCount.setText(gw.getNumberOfFires());
+        fireSizeCount.setText(gw.getNumberOfFireCount());
         damageCount.setText(gw.getNumberOfDamage());
         lossCount.setText(gw.getNumberOfLoss());
-
 
     }
 

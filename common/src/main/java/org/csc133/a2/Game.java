@@ -11,12 +11,13 @@ import org.csc133.a2.views.StatusView;
 
 public class Game extends Form implements Runnable {
     private GameWorld gw;
-    MapView worldView;
-    StatusView statusView;
-    ControlCluster controlView;
+    private MapView worldView;
+    private StatusView statusView;
+    private ControlCluster controlView;
 
     public Game() {
         gw = new GameWorld();
+        setTitle("hfd");
 
         worldView = new MapView(gw);
         statusView = new StatusView(gw);
@@ -36,8 +37,6 @@ public class Game extends Form implements Runnable {
 //        addKeyListener('d',(evt) -> gw.drinkFromWater());
 //        addKeyListener('f',(evt) -> gw.fightFire());
 
-
-
         UITimer timer = new UITimer(this);
         timer.schedule(100, true, this);
         this.getAllStyles().setBgColor(ColorUtil.BLACK);
@@ -50,10 +49,11 @@ public class Game extends Form implements Runnable {
     @Override
     public void run() {
         gw.tick();
-        statusView.update();
+        //statusView.update();
         repaint();
-
     }
+
+
 
     public void paint(Graphics g) {
         super.paint(g);

@@ -2,8 +2,6 @@ package org.csc133.a2;
 
 import com.codename1.ui.Display;
 import com.codename1.ui.geom.Dimension;
-import org.csc133.a2.commands.goForwardCommand;
-import org.csc133.a2.commands.turnLeftCommand;
 import org.csc133.a2.gameobjects.*;
 import java.util.ArrayList;
 
@@ -23,17 +21,19 @@ public class GameWorld {
     private Building building2;
     private Building building3;
 
+   ArrayList<Fire> fires;
+   //ArrayList<Building> buildings;
+    private Buildings buildings;
+
     private ArrayList<GameObject> gameObjects;
 
 
-    public GameWorld() {
-
-    }
+//    public GameWorld() {
+//
+//    }
 
 
     public void init() {
-
-        //MUST GET RID OF MAGIC NUMBERS
         helipad = new Helipad(worldSize);
         river = new River(worldSize);
 
@@ -49,16 +49,21 @@ public class GameWorld {
         fire3 = new Fire(DISP_W / 2, DISP_H / 2 + 50, 50);
         helicopter = new Helicopter(worldSize);
 
+        fires = new ArrayList<>();
+        //buildings = new ArrayList<>();
+
+        fires.add(fire);
+        fires.add(fire2);
+        fires.add(fire3);
+
+//        buildings.add(building);
+//        buildings.add(building2);
+//        buildings.add(building3);
+
         gameObjects = new ArrayList<>();
 
         gameObjects.add(helipad);
         gameObjects.add(river);
-        gameObjects.add(building);
-        gameObjects.add(building2);
-        gameObjects.add(building3);
-        gameObjects.add(fire);
-        gameObjects.add(fire2);
-        gameObjects.add(fire3);
         gameObjects.add(helicopter);
     }
 
@@ -118,11 +123,11 @@ public class GameWorld {
     /////////////////////////
 
     public void arrowUp() {
-        goForwardCommand.goForward(helicopter);
+        helicopter.increaseSpeed();
     }
 
     public void arrowLeft() {
-        turnLeftCommand.turnLeft(helicopter);
+        helicopter.steerLeft();
     }
 
     public void arrowRight() {
@@ -137,4 +142,7 @@ public class GameWorld {
         Display.getInstance().exitApplication();
     }
 
+    public String  getNumberOfFireCount() {
+        return "0";
+    }
 }

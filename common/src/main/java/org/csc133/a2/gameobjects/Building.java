@@ -16,6 +16,7 @@ public class Building extends Fixed {
     private int y;
     private int w;
     private int h;
+    private int fuel;
 
     public Building(Dimension worldSize, int x, int y, int w, int h)
     {
@@ -23,6 +24,8 @@ public class Building extends Fixed {
         this.color = ColorUtil.rgb(255,0,0);
         this.location = new Point2D(0,worldSize.getHeight());
         this.dimension = new Dimension(worldSize.getWidth(),worldSize.getHeight());
+
+        fuel = 25000;
 
         this.x = x;
         this.y = y;
@@ -48,4 +51,5 @@ public class Building extends Fixed {
         int h2 = (int) (dimension.getHeight()*0.4)+h;
         g.drawRect(x2,y2,w2,h2);
     }
+
 }

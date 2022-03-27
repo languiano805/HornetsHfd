@@ -21,7 +21,6 @@ public class MapView extends Container
     {
         gw.setDimension(new Dimension(this.getWidth(),this.getHeight()));
         gw.init();
-
     }
 
     @Override
@@ -29,8 +28,6 @@ public class MapView extends Container
     {
         super.paint(g);
         for(GameObject go: gw.getGameObjectCollection())
-        {
             go.draw(g, new Point(this.getX(),this.getY()));
-        }
     }
 }

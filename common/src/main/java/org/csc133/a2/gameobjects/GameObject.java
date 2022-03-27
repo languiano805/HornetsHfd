@@ -18,10 +18,5 @@ public abstract class GameObject implements Drawable
     Dimension worldSize;
     Dimension dimension;
 
-
-    public String toString()
-    {
-        return this.getClass().getSimpleName();
-    }
 }
 

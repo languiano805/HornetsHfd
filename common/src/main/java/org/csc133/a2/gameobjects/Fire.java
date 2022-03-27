@@ -35,6 +35,6 @@ public class Fire extends Fixed
 
     @Override
     public void draw(Graphics g, Point containerOrigin) {
-
+        drawFire(g);
     }
 }

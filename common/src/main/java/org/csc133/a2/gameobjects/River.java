@@ -14,11 +14,11 @@ import com.codename1.ui.geom.Point2D;
  */
 public class River extends Fixed
 {
-    final static int DISP_W = Display.getInstance().getDisplayWidth();
-    final static int DISP_H = Display.getInstance().getDisplayHeight();
+//    final static int DISP_W = Display.getInstance().getDisplayWidth();
+//    final static int DISP_H = Display.getInstance().getDisplayHeight();
 
-    private Point locationOfRiver;
-    private int sizeOfRiver;
+//    private Point locationOfRiver;
+//    private int sizeOfRiver;
 
     public River(Dimension worldSize) {
         this.worldSize = worldSize;
@@ -26,8 +26,8 @@ public class River extends Fixed
         this.location = new Point2D(0, worldSize.getHeight());
         this.dimension =  new Dimension(worldSize.getWidth(),worldSize.getHeight());
 
-        sizeOfRiver = (int) (DISP_H * 0.2);
-        locationOfRiver = new Point(DISP_W / 2 - sizeOfRiver / 2, DISP_H / 5);
+//        sizeOfRiver = (int) (DISP_H * 0.2);
+//        locationOfRiver = new Point(DISP_W / 2 - sizeOfRiver / 2, DISP_H / 5);
     }
 
 //    public void drawRiver(Graphics g) {
