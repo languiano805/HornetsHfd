@@ -81,6 +81,12 @@ public class GameWorld {
     public void tick() {
         helicopter.reduceFuel();
         helicopter.goForward();
+        for(Fire flame : fires)
+        {
+            if(flame.getFireSize()>1){
+                flame.grow();
+            }
+        }
     }
 
 

@@ -5,7 +5,6 @@ import com.codename1.ui.Graphics;
 import com.codename1.ui.geom.Dimension;
 import com.codename1.ui.geom.Point;
 import com.codename1.ui.geom.Point2D;
-import org.csc133.a2.GameWorld;
 
 
 import java.util.Random;
@@ -53,6 +52,14 @@ public class Fire extends Fixed
 //        g.setColor(ColorUtil.YELLOW);
 //    }
 
+    public void grow()
+    {
+        Random rand = new Random();
+        if(rand.nextInt(15) == 10) {
+            size += rand.nextInt(5);
+        }
+    }
+
     public int setXLocation()
     {
         int areaOfBuilding = building.getRightBuildingBorder() - building.getLeftBuildingBorder();
@@ -71,12 +78,10 @@ public class Fire extends Fixed
     @Override
     public void draw(Graphics g, Point containerOrigin) {
         g.setColor(color);
-        int w = dimension.getWidth();
-        int h = dimension.getHeight();
         if(size>1)
         {
             g.drawString(String.valueOf(size), setXLocation() + size, setYLocation()+size);
         }
-        g.fillArc(setXLocation(),setYLocation(),w,h,0,360);
+        g.fillArc(setXLocation(),setYLocation(),size,size,0,360);
     }
 }

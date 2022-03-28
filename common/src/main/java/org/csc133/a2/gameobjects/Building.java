@@ -16,6 +16,8 @@ public class Building extends Fixed {
     final static int DISP_W = Display.getInstance().getDisplayWidth();
     final static int DISP_H = Display.getInstance().getDisplayHeight();
 
+    Random rand;
+
     private int x;
     private int y;
     private int w;
@@ -31,10 +33,13 @@ public class Building extends Fixed {
 
     public Building(Dimension worldSize, int x, int y, int w, int h)
     {
+        rand = new Random();
         this.worldSize = worldSize;
         this.color = ColorUtil.rgb(255,0,0);
         this.location = new Point2D(0,worldSize.getHeight());
         this.dimension = new Dimension(worldSize.getWidth(),worldSize.getHeight());
+
+        valueOfBuilding = rand.nextInt(1000);
 
         fuel = 25000;
         damage = 0;
@@ -93,10 +98,10 @@ public class Building extends Fixed {
         topBorder = y2;
         bottomBorder = y2+h2;
 
-        g.drawString("left " + leftBorder, leftBorder, bottomBorder/2);
-        g.drawString("right " + rightBorder, rightBorder, bottomBorder/2);
-        g.drawString("bottom " + bottomBorder, rightBorder/2, bottomBorder);
-        g.drawString("top " + topBorder, rightBorder/2, topBorder);
+//        g.drawString("left " + leftBorder, leftBorder, bottomBorder/2);
+//        g.drawString("right " + rightBorder, rightBorder, bottomBorder/2);
+//        g.drawString("bottom " + bottomBorder, rightBorder/2, bottomBorder);
+//        g.drawString("top " + topBorder, rightBorder/2, topBorder);
     }
 
 }
