@@ -21,4 +21,6 @@ public class Buildings extends GameObjectCollections<Building>{
             build.draw(g, containerOrigin);
         }
     }
+
+
 }

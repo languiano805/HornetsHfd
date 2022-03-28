@@ -96,9 +96,13 @@ public class Helicopter extends GameObject implements Steerable
         }
     }
 
-    public int getSpeed()
+    public String getSpeed()
     {
-        return speed;
+        return String.valueOf(speed);
+    }
+
+    public int getWater(){
+        return water;
     }
 
     public void reduceFuel()
@@ -114,17 +118,27 @@ public class Helicopter extends GameObject implements Steerable
         return fuel;
     }
 
-//    public void drawHelicopter(Graphics g)
-//    {
-//        g.setColor(ColorUtil.YELLOW);
-//        g.drawString("W :" + water, (int) (centerOfCircle.getX()+35)
-//                , (int) (centerOfCircle.getY()+35));
-//        g.drawString("F: " + fuel, (int) (centerOfCircle.getX()+35),
-//                (int) (centerOfCircle.getY()+50));
-//        g.drawLine((int) centerOfCircle.getX(), (int) centerOfCircle.getY(),
-//                (int) lineEndPoint.getX(), (int) lineEndPoint.getY());
-//        g.fillArc((int) location.getX(), (int) location.getY(),size,size,0,360);
-//    }
+    public Boolean aboveRiver(River river) {
+        Boolean result = false;
+
+        if (river.getLowerBoarder() < centerOfCircle.getY()
+                && centerOfCircle.getY() < river.getUpperBoarder()) {
+            result = true;
+        }
+        return result;
+    }
+
+    public void waterRefill()
+    {
+        if(speed <= 2)
+        {
+            if(water < 1000)
+            {
+                water+=100;
+            }
+        }
+    }
+
 
     @Override
     public void draw(Graphics g, Point containerOrigin) {
@@ -147,6 +161,7 @@ public class Helicopter extends GameObject implements Steerable
         g.drawLine(x2,y2,x3,y3);
         g.fillArc(x,y,w,h,0,360);
     }
+
 
 
 }

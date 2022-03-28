@@ -14,11 +14,8 @@ import com.codename1.ui.geom.Point2D;
  */
 public class River extends Fixed
 {
-//    final static int DISP_W = Display.getInstance().getDisplayWidth();
-//    final static int DISP_H = Display.getInstance().getDisplayHeight();
-
-//    private Point locationOfRiver;
-//    private int sizeOfRiver;
+    int lowerBoarder;
+    int upperBoarder;
 
     public River(Dimension worldSize) {
         this.worldSize = worldSize;
@@ -26,14 +23,19 @@ public class River extends Fixed
         this.location = new Point2D(0, worldSize.getHeight());
         this.dimension =  new Dimension(worldSize.getWidth(),worldSize.getHeight());
 
-//        sizeOfRiver = (int) (DISP_H * 0.2);
-//        locationOfRiver = new Point(DISP_W / 2 - sizeOfRiver / 2, DISP_H / 5);
+
     }
 
-//    public void drawRiver(Graphics g) {
-//        g.setColor((ColorUtil.BLUE));
-//        g.drawRect(0, locationOfRiver.getY(), DISP_W, DISP_H / 10, 3);
-//    }
+
+    public int getLowerBoarder()
+    {
+        return lowerBoarder;
+    }
+
+    public int getUpperBoarder()
+    {
+        return upperBoarder;
+    }
 
     @Override
     public void draw(Graphics g, Point containerOrigin) {
@@ -43,8 +45,11 @@ public class River extends Fixed
         int w = dimension.getWidth();
         int h = (int) (dimension.getHeight()/8.5);
         g.drawRect(x,y,w, h,3);
-        g.drawString("lower",100,h);
-        g.drawString("upper",100,y);
+        g.setColor(ColorUtil.GREEN);
+        lowerBoarder = y+125;
+        upperBoarder = y-10;
+        g.drawString("lower",100,y+125);
+        g.drawString("upper",100,y-10);
 
     }
 }

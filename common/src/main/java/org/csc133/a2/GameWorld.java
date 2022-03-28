@@ -21,11 +21,12 @@ public class GameWorld {
     private Building building2;
     private Building building3;
 
-   ArrayList<Fire> fires;
-   //ArrayList<Building> buildings;
-    private Buildings buildings;
 
-    private ArrayList<GameObject> gameObjects;
+   //ArrayList<Fire> fires;
+   private Fires fires;
+   private Buildings buildings;
+
+   private ArrayList<GameObject> gameObjects;
 
 
 //    public GameWorld() {
@@ -38,10 +39,10 @@ public class GameWorld {
         river = new River(worldSize);
 
         //CHANGE THESE COORDS TO FIT BETTER TO SCREEN
-        building = new Building(worldSize,(int) (DISP_W * 0.09), DISP_H / 2, 0, 0);
+        building = new Building(worldSize,(int) (DISP_W * 0.09), (int) (DISP_H / 2.5), 0, 0);
         building2 = new Building(worldSize,(int) (DISP_W * 0.8),
-                (int) (DISP_H / 2 + DISP_H * 0.07), 0, (int) -(DISP_H * 0.09));
-        building3 = new Building(worldSize,(int) (DISP_W * 0.14), (int) (DISP_H * 0.03),
+                (int) (DISP_H / 2.5 + DISP_H * 0.02), 0, (int) -(DISP_H * 0.09));
+        building3 = new Building(worldSize,(int) (DISP_W * 0.14), (int) (DISP_H * 0.07),
                 (int) (DISP_W * 0.6), (int) -(DISP_H * 0.25));
 
         fire = new Fire(300, 30, 50);
@@ -49,21 +50,25 @@ public class GameWorld {
         fire3 = new Fire(DISP_W / 2, DISP_H / 2 + 50, 50);
         helicopter = new Helicopter(worldSize);
 
-        fires = new ArrayList<>();
+        //fires = new ArrayList<>();
         //buildings = new ArrayList<>();
+        buildings = new Buildings();
+        fires = new Fires();
 
         fires.add(fire);
         fires.add(fire2);
         fires.add(fire3);
 
-//        buildings.add(building);
-//        buildings.add(building2);
-//        buildings.add(building3);
+        buildings.add(building);
+        buildings.add(building2);
+        buildings.add(building3);
 
         gameObjects = new ArrayList<>();
 
         gameObjects.add(helipad);
         gameObjects.add(river);
+        gameObjects.add(buildings);
+        gameObjects.add(fires);
         gameObjects.add(helicopter);
     }
 
@@ -96,7 +101,7 @@ public class GameWorld {
     }
 
     public String getNumberOfSpeed() {
-        return String.valueOf(helicopter.getSpeed());
+        return helicopter.getSpeed();
     }
 
     public String getNumberOfFuel() {
@@ -120,7 +125,7 @@ public class GameWorld {
         this.worldSize = worldSize;
     }
 
-    /////////////////////////
+    //movement for the helicopter commands
 
     public void arrowUp() {
         helicopter.increaseSpeed();
@@ -144,5 +149,15 @@ public class GameWorld {
 
     public String  getNumberOfFireCount() {
         return "0";
+    }
+
+    //river and helicopter commands
+    //
+    public void getWaterFromRiver()
+    {
+        if(helicopter.aboveRiver(river))
+        {
+            helicopter.waterRefill();
+        }
     }
 }
