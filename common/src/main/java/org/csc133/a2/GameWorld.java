@@ -17,6 +17,9 @@ public class GameWorld {
     private Fire fire;
     private Fire fire2;
     private Fire fire3;
+    private Fire fire4;
+    private Fire fire5;
+    private Fire fire6;
     private Building building;
     private Building building2;
     private Building building3;
@@ -44,20 +47,27 @@ public class GameWorld {
                 (int) (DISP_W * 0.6), (int) -(DISP_H * 0.25));
 
         fire = new Fire(worldSize, building);
-//        fire2 = new Fire(1500, 25, 50);
-//        fire3 = new Fire(DISP_W / 2, DISP_H / 2 + 50, 50);
+        fire2 = new Fire(worldSize, building);
+        fire3 = new Fire(worldSize,building2);
+        fire4 = new Fire(worldSize,building2);
+        fire5 = new Fire(worldSize, building3);
+        fire6 = new Fire(worldSize, building3);
+
         helicopter = new Helicopter(worldSize, river);
 
         buildings = new Buildings();
         fires = new Fires();
 
         fires.add(fire);
-//        fires.add(fire2);
-//        fires.add(fire3);
+        fires.add(fire2);
+        fires.add(fire3);
+        fires.add(fire4);
+        fires.add(fire5);
+        fires.add(fire6);
 
         buildings.add(building);
-//        buildings.add(building2);
-//        buildings.add(building3);
+        buildings.add(building2);
+        buildings.add(building3);
 
         gameObjects = new ArrayList<>();
 

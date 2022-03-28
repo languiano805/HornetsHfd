@@ -16,8 +16,6 @@ public class Building extends Fixed {
     final static int DISP_W = Display.getInstance().getDisplayWidth();
     final static int DISP_H = Display.getInstance().getDisplayHeight();
 
-    private Random rand;
-
     private int x;
     private int y;
     private int w;
@@ -37,9 +35,6 @@ public class Building extends Fixed {
         this.color = ColorUtil.rgb(255,0,0);
         this.location = new Point2D(0,worldSize.getHeight());
         this.dimension = new Dimension(worldSize.getWidth(),worldSize.getHeight());
-        rand = new Random();
-
-        valueOfBuilding = rand.nextInt(900)+100;
 
         fuel = 25000;
         damage = 0;

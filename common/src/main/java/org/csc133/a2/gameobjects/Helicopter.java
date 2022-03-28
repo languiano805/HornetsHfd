@@ -27,7 +27,7 @@ public class Helicopter extends GameObject implements Steerable
     private int speed;
     private double rotateAmount;
     private int distance;
-    River river;
+    private River river;
 
     public Helicopter(Dimension worldSize, River river)
     {

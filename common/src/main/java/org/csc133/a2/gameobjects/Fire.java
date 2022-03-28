@@ -15,14 +15,27 @@ public class Fire extends Fixed
     private Random rand;
 
     private int size;
-    private int xLocation;
+
+    private Building building;
+    private int percentage;
+    private double percentageButDouble;
+    private int otherPercentage;
+    private double otherPercentageButDouble;
 
     public Fire(Dimension worldSize, Building building) {
+        this.building = building;
        rand = new Random();
+
        size = rand.nextInt(18)+2;
+
+       percentage = rand.nextInt(97)+2;
+       percentageButDouble = percentage/100.0;
+       otherPercentage = rand.nextInt(97)+2;
+       otherPercentageButDouble = otherPercentage/100.0;
+
        this.worldSize = worldSize;
        this.color = ColorUtil.MAGENTA;
-       this.location = new Point2D(xLocation,400);
+       this.location = new Point2D(0,0);
        this.dimension = new Dimension(size, size);
     }
 
@@ -40,18 +53,30 @@ public class Fire extends Fixed
 //        g.setColor(ColorUtil.YELLOW);
 //    }
 
+    public int setXLocation()
+    {
+        int areaOfBuilding = building.getRightBuildingBorder() - building.getLeftBuildingBorder();
+        int variableIllUseForLocation = (int) (areaOfBuilding*percentageButDouble);
+        return building.getLeftBuildingBorder()+variableIllUseForLocation;
+    }
+
+    public int setYLocation()
+    {
+        int areaOfBuilding = building.getBottomBorder() - building.getTopBuildingBorder();
+        int variableIllUseForLocation = (int) (areaOfBuilding*otherPercentageButDouble);
+        return building.getTopBuildingBorder()+variableIllUseForLocation;
+    }
+
 
     @Override
     public void draw(Graphics g, Point containerOrigin) {
         g.setColor(color);
-        int x = (int) (containerOrigin.getX() + location.getX());
-        int y = (int) (containerOrigin.getY() + location.getY());
         int w = dimension.getWidth();
         int h = dimension.getHeight();
         if(size>1)
         {
-            g.drawString(String.valueOf(size), x + size, y+size);
+            g.drawString(String.valueOf(size), setXLocation() + size, setYLocation()+size);
         }
-        g.fillArc(x,y,w,h,0,360);
+        g.fillArc(setXLocation(),setYLocation(),w,h,0,360);
     }
 }
