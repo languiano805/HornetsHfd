@@ -21,8 +21,6 @@ public class GameWorld {
     private Building building2;
     private Building building3;
 
-
-   //ArrayList<Fire> fires;
    private Fires fires;
    private Buildings buildings;
 
@@ -45,23 +43,21 @@ public class GameWorld {
         building3 = new Building(worldSize,(int) (DISP_W * 0.14), (int) (DISP_H * 0.07),
                 (int) (DISP_W * 0.6), (int) -(DISP_H * 0.25));
 
-        fire = new Fire(300, 30, 50);
-        fire2 = new Fire(1500, 25, 50);
-        fire3 = new Fire(DISP_W / 2, DISP_H / 2 + 50, 50);
-        helicopter = new Helicopter(worldSize);
+        fire = new Fire(worldSize, building);
+//        fire2 = new Fire(1500, 25, 50);
+//        fire3 = new Fire(DISP_W / 2, DISP_H / 2 + 50, 50);
+        helicopter = new Helicopter(worldSize, river);
 
-        //fires = new ArrayList<>();
-        //buildings = new ArrayList<>();
         buildings = new Buildings();
         fires = new Fires();
 
         fires.add(fire);
-        fires.add(fire2);
-        fires.add(fire3);
+//        fires.add(fire2);
+//        fires.add(fire3);
 
         buildings.add(building);
-        buildings.add(building2);
-        buildings.add(building3);
+//        buildings.add(building2);
+//        buildings.add(building3);
 
         gameObjects = new ArrayList<>();
 
@@ -71,18 +67,6 @@ public class GameWorld {
         gameObjects.add(fires);
         gameObjects.add(helicopter);
     }
-
-//    void draw(Graphics g) {
-//        //helipad.drawHelipad(g);
-//        //river.drawRiver(g);
-//        fire.drawFire(g);
-//        fire2.drawFire(g);
-//        fire3.drawFire(g);
-//        //helicopter.draw(g);
-//        building.drawBuilding(g);
-//        building2.drawBuilding(g);
-//        building3.drawBuilding(g);
-//    }
 
     public void tick() {
         helicopter.reduceFuel();
@@ -155,9 +139,16 @@ public class GameWorld {
     //
     public void getWaterFromRiver()
     {
-        if(helicopter.aboveRiver(river))
+        if(helicopter.aboveRiver())
         {
             helicopter.waterRefill();
         }
     }
+
+    public void fightFire()
+    {
+        helicopter.dropWater();
+    }
+
+
 }

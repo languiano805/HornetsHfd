@@ -35,7 +35,7 @@ public class Game extends Form implements Runnable {
         addKeyListener(-94, (evt) -> gw.arrowRight());
         addKeyListener(-92, (evt) -> gw.arrowDown());
         addKeyListener('d',(evt) -> gw.getWaterFromRiver());
-//        addKeyListener('f',(evt) -> gw.fightFire());
+        addKeyListener('f',(evt) -> gw.fightFire());
 
         UITimer timer = new UITimer(this);
         timer.schedule(100, true, this);
@@ -49,7 +49,7 @@ public class Game extends Form implements Runnable {
     @Override
     public void run() {
         gw.tick();
-        statusView.update();
+        //statusView.update();
         repaint();
     }
 
