@@ -163,6 +163,13 @@ public class GameWorld {
 
     public void fightFire()
     {
+        for(Fire flame : fires)
+        {
+            if(helicopter.aboveFire(flame) && helicopter.waterAmount() > 0)
+            {
+                flame.fireReduce(helicopter.waterAmount());
+            }
+        }
         helicopter.dropWater();
     }
 

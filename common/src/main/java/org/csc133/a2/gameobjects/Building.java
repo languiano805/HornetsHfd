@@ -26,6 +26,9 @@ public class Building extends Fixed {
     private int damage;
     private int valueOfBuilding;
 
+    private int temp;
+    private int damageFromGreatestBurn;
+
     private int leftBorder;
     private int rightBorder;
     private int topBorder;
@@ -79,7 +82,6 @@ public class Building extends Fixed {
     {
         return bottomBorder;
     }
-
 
 
     @Override

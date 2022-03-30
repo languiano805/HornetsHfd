@@ -20,17 +20,24 @@ public class Fire extends Fixed
     private double percentageButDouble;
     private int otherPercentage;
     private double otherPercentageButDouble;
+    private int maxBurn;
+    private int value;
+    private int damagePercentage;
 
     public Fire(Dimension worldSize, Building building) {
         this.building = building;
        rand = new Random();
 
        size = rand.nextInt(18)+2;
+       value = rand.nextInt(900) + 100;
 
-       percentage = rand.nextInt(97)+2;
+       percentage = rand.nextInt(85)+5;
        percentageButDouble = percentage/100.0;
        otherPercentage = rand.nextInt(97)+2;
        otherPercentageButDouble = otherPercentage/100.0;
+
+       damagePercentage = 0;
+       maxBurn = 0;
 
        this.worldSize = worldSize;
        this.color = ColorUtil.MAGENTA;
@@ -41,16 +48,6 @@ public class Fire extends Fixed
     public int getFireSize() {
         return size;
     }
-
-//    public void drawFire(Graphics g) {
-//        g.setColor(ColorUtil.MAGENTA);
-//        if (size > 1) {
-//            g.drawString("W: " + size, (x + size), (y + size));
-//        }
-//        g.setColor(ColorUtil.MAGENTA);
-//        g.fillArc(x, y, size, size, 0, 360);
-//        g.setColor(ColorUtil.YELLOW);
-//    }
 
     public void grow()
     {
@@ -74,6 +71,47 @@ public class Fire extends Fixed
         return building.getTopBuildingBorder()+variableIllUseForLocation;
     }
 
+    public int getBurnDamage()
+    {
+        int temp = size;
+        if(temp > maxBurn)
+        {
+            maxBurn = temp;
+        }
+        return maxBurn;
+    }
+
+    public void fireReduce(int water)
+    {
+       if(water * .2 > getFireSize())
+       {
+           size = 1;
+       }
+       else
+       {
+           size -= water *.2;
+       }
+    }
+
+    public int right(){
+        return setXLocation()+size;
+    }
+
+    public int left()
+    {
+        return setXLocation();
+    }
+
+    public int top()
+    {
+        return setYLocation();
+    }
+
+    public int bottom()
+    {
+        return setYLocation()+size;
+    }
+
 
     @Override
     public void draw(Graphics g, Point containerOrigin) {
@@ -83,5 +121,13 @@ public class Fire extends Fixed
             g.drawString(String.valueOf(size), setXLocation() + size, setYLocation()+size);
         }
         g.fillArc(setXLocation(),setYLocation(),size,size,0,360);
+
+        g.drawString("right", right(),bottom()/2+size/2 );
+        g.drawString("left", left(), bottom()/2+size/2);
+        g.drawString("top", right()/2+size/2, top());
+        g.drawString("bottom", right()/2+size/2, bottom());
+
+        g.setColor(ColorUtil.rgb(255,0,0));
+
     }
 }
