@@ -7,6 +7,7 @@ public abstract class GameObjectCollections<T> extends GameObject implements Ite
 {
     ArrayList<T> gameObjects;
 
+
     class GameObjectIterator implements Iterator<T>
     {
         int index = 0;
@@ -36,6 +37,8 @@ public abstract class GameObjectCollections<T> extends GameObject implements Ite
     {
         gameObjects.add(gameObject);
     }
+
+    public T get(int x) { return gameObjects.get(x);}
 
     public void remove(T gameObject)
     {

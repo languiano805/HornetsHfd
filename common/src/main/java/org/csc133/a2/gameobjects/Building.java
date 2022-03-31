@@ -25,6 +25,7 @@ public class Building extends Fixed {
     private int fuel;
     private int damage;
     private int valueOfBuilding;
+    private int originalValue;
 
     private int temp;
     private int damageFromGreatestBurn;
@@ -34,6 +35,8 @@ public class Building extends Fixed {
     private int topBorder;
     private int bottomBorder;
 
+    private int compareTotalFireValue;
+
     public Building(Dimension worldSize, int x, int y, int w, int h)
     {
         rand = new Random();
@@ -42,7 +45,10 @@ public class Building extends Fixed {
         this.location = new Point2D(0,worldSize.getHeight());
         this.dimension = new Dimension(worldSize.getWidth(),worldSize.getHeight());
 
-        valueOfBuilding = rand.nextInt(1000);
+        compareTotalFireValue = 0;
+
+        valueOfBuilding = rand.nextInt(900)+100;
+        originalValue = valueOfBuilding;
 
         fuel = 25000;
         damage = 0;
@@ -51,14 +57,6 @@ public class Building extends Fixed {
         this.y = y;
         this.w = w;
         this.h = h;
-    }
-
-    public void drawBuilding(Graphics g)
-    {
-        //MAY NEED TO PASS IN WIDTH AND LENGTH OF BUILDINGS
-        g.setColor(ColorUtil.rgb(250,0,0));
-        g.drawRect(x,y,DISP_W/8+w,
-                (int) (DISP_H*0.4)+h);
     }
 
     //for passing dimensions to the fire to set location
@@ -83,6 +81,30 @@ public class Building extends Fixed {
         return bottomBorder;
     }
 
+    //fire building interaction
+    public void editBuildingValue(int totalFireDamage)
+    {
+        int difference = 0;
+        if(totalFireDamage > compareTotalFireValue)
+        {
+            difference = totalFireDamage - compareTotalFireValue;
+            compareTotalFireValue = totalFireDamage;
+            setValueOfBuilding(difference);
+        }
+
+    }
+
+    public void setValueOfBuilding(int changeInBuildingValue)
+    {
+        valueOfBuilding-=changeInBuildingValue;
+    }
+
+    public int getPercentageOfDamage()
+    {
+        double perc = (double)(valueOfBuilding)/(double)(originalValue);
+        return (int) (100 - (perc*100));
+    }
+
 
     @Override
     public void draw(Graphics g, Point containerOrigin) {
@@ -93,7 +115,7 @@ public class Building extends Fixed {
         int h2 = (int) (dimension.getHeight()*0.4)+h;
         g.drawRect(x2,y2,w2,h2);
         g.drawString("V: " + valueOfBuilding, (int) (x2+w2+15), (int) (y2+h2-60));
-        g.drawString("D: " + damage + "%", x2+w2+15,y2+h2-35);
+        g.drawString("D: " + getPercentageOfDamage() + "%", x2+w2+15,y2+h2-35);
 
         leftBorder = x2;
         rightBorder = x2+w2;

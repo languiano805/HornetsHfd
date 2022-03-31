@@ -23,21 +23,25 @@ public class Fire extends Fixed
     private int maxBurn;
     private int value;
     private int damagePercentage;
+    private int maxFireSize;
+
+    private int originalValue;
 
     public Fire(Dimension worldSize, Building building) {
         this.building = building;
        rand = new Random();
 
        size = rand.nextInt(18)+2;
-       value = rand.nextInt(900) + 100;
+       maxFireSize = size;
+//       value = rand.nextInt(900) + 100;
+//       originalValue = value;
 
        percentage = rand.nextInt(85)+5;
        percentageButDouble = percentage/100.0;
        otherPercentage = rand.nextInt(97)+2;
        otherPercentageButDouble = otherPercentage/100.0;
 
-       damagePercentage = 0;
-       maxBurn = 0;
+       //damagePercentage = 0;
 
        this.worldSize = worldSize;
        this.color = ColorUtil.MAGENTA;
@@ -83,13 +87,13 @@ public class Fire extends Fixed
 
     public void fireReduce(int water)
     {
-       if(water * .2 > getFireSize())
+       if(water * .05 > getFireSize())
        {
            size = 1;
        }
        else
        {
-           size -= water *.2;
+           size -= water *.05;
        }
     }
 
@@ -112,6 +116,23 @@ public class Fire extends Fixed
         return setYLocation()+size;
     }
 
+    public Building getBuilding()
+    {
+        return building;
+    }
+
+    public void setMaxFireSize()
+    {
+        if(size > maxFireSize)
+        {
+            maxFireSize = size;
+        }
+    }
+
+    public int getMaxFireSize()
+    {
+        return maxFireSize;
+    }
 
     @Override
     public void draw(Graphics g, Point containerOrigin) {
@@ -119,13 +140,10 @@ public class Fire extends Fixed
         if(size>1)
         {
             g.drawString(String.valueOf(size), setXLocation() + size, setYLocation()+size);
+            g.drawString(String.valueOf(maxFireSize), setXLocation()+size,setYLocation()+size+20 );
         }
         g.fillArc(setXLocation(),setYLocation(),size,size,0,360);
 
-        g.drawString("right", right(),bottom()/2+size/2 );
-        g.drawString("left", left(), bottom()/2+size/2);
-        g.drawString("top", right()/2+size/2, top());
-        g.drawString("bottom", right()/2+size/2, bottom());
 
         g.setColor(ColorUtil.rgb(255,0,0));
 

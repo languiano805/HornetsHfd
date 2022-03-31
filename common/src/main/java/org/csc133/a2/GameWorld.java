@@ -23,6 +23,8 @@ public class GameWorld {
     private Building building;
     private Building building2;
     private Building building3;
+    private CockPitDisplay fakeCockPit;
+    private ObjectInteraction objectInteraction;
 
    private Fires fires;
    private Buildings buildings;
@@ -53,7 +55,9 @@ public class GameWorld {
         fire5 = new Fire(worldSize, building3);
         fire6 = new Fire(worldSize, building3);
 
-        helicopter = new Helicopter(worldSize, river);
+
+
+
 
         buildings = new Buildings();
         fires = new Fires();
@@ -69,6 +73,10 @@ public class GameWorld {
         buildings.add(building2);
         buildings.add(building3);
 
+        helicopter = new Helicopter(worldSize, river);
+
+        fakeCockPit = new CockPitDisplay(worldSize, helicopter,fires,buildings);
+
         gameObjects = new ArrayList<>();
 
         gameObjects.add(helipad);
@@ -76,6 +84,7 @@ public class GameWorld {
         gameObjects.add(buildings);
         gameObjects.add(fires);
         gameObjects.add(helicopter);
+        gameObjects.add(fakeCockPit);
     }
 
     public void tick() {
@@ -86,7 +95,10 @@ public class GameWorld {
             if(flame.getFireSize()>1){
                 flame.grow();
             }
+            flame.setMaxFireSize();
         }
+        ObjectInteraction.changeBuildingValue(fires);
+
     }
 
 
