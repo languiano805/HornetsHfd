@@ -15,24 +15,8 @@ import org.csc133.a2.interfaces.Steerable;
  * circle with a line emanating from the center of
  * the circle pointing in the direction of the helicopters heading.
  */
-public class Helicopter extends GameObject implements Steerable
+public class Helicopter extends Movable implements Steerable
 {
-    private Point2D centerOfCircle;
-    private Point2D lineEndPoint;
-
-    private int size;
-    private int water;
-    private int fuel;
-    private int speed;
-    private double rotateAmount;
-    private int distance;
-    private River river;
-    private Helipad helipad;
-
-    private int heading;
-
-    private int centerOfCircleX;
-    private int centerOfCircleY;
 
     public Helicopter(Dimension worldSize, River river, Helipad helipad)
     {

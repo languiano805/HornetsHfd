@@ -24,30 +24,26 @@ public class GameWorld {
     private Building building;
     private Building building2;
     private Building building3;
-   // private CockPitDisplay fakeCockPit;
 
     private int numberOfExtinguishedFires;
 
-    private  int totalValueOfBuildings;
    private Fires fires;
    private  Buildings buildings;
 
    private ArrayList<GameObject> gameObjects;
-
-
-//    public GameWorld() {
-//
-//    }
 
     public void init() {
         helipad = new Helipad(worldSize);
         river = new River(worldSize);
 
         //CHANGE THESE COORDS TO FIT BETTER TO SCREEN
-        building = new Building(worldSize,(int) (DISP_W * 0.09), (int) (DISP_H / 2.5), 0, 0);
+        building = new Building(worldSize,(int) (DISP_W * 0.09),
+                (int) (DISP_H / 2.5), 0, 0);
         building2 = new Building(worldSize,(int) (DISP_W * 0.8),
-                (int) (DISP_H / 2.5 + DISP_H * 0.02), 0, (int) -(DISP_H * 0.09));
-        building3 = new Building(worldSize,(int) (DISP_W * 0.14), (int) (DISP_H * 0.07),
+                (int) (DISP_H / 2.5 + DISP_H * 0.02),
+                0, (int) -(DISP_H * 0.09));
+        building3 = new Building(worldSize,(int) (DISP_W * 0.14),
+                (int) (DISP_H * 0.07),
                 (int) (DISP_W * 0.6), (int) -(DISP_H * 0.25));
 
         fire = new Fire(worldSize, building);
@@ -71,24 +67,14 @@ public class GameWorld {
         buildings.add(building2);
         buildings.add(building3);
 
-        for(Building build : buildings)
-        {
-            totalValueOfBuildings += build.getOriginalValueOfBuilding();
-        }
-
         helicopter = new Helicopter(worldSize, river, helipad);
 
-        //fakeCockPit = new CockPitDisplay(worldSize, helicopter,fires,buildings);
-
         gameObjects = new ArrayList<>();
-
-
         gameObjects.add(helipad);
         gameObjects.add(river);
         gameObjects.add(buildings);
         gameObjects.add(fires);
         gameObjects.add(helicopter);
-       // gameObjects.add(fakeCockPit);
     }
 
     public void tick() {
@@ -129,7 +115,8 @@ public class GameWorld {
                 numberOfExtinguishedFires++;
             }
         }
-        if(numberOfExtinguishedFires >= 6 && helicopter.isHelicopterAboveHelipad())
+        if(numberOfExtinguishedFires >= 6
+                && helicopter.isHelicopterAboveHelipad())
         {
             winGame();
         }
@@ -239,8 +226,6 @@ public class GameWorld {
     public void quit() {
         Display.getInstance().exitApplication();
     }
-
-
 
     //river and helicopter commands
     //

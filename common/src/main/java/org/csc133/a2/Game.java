@@ -17,7 +17,6 @@ public class Game extends Form implements Runnable {
 
     public Game() {
         gw = new GameWorld();
-        setTitle("hfd");
 
         worldView = new MapView(gw);
         statusView = new StatusView(gw);
