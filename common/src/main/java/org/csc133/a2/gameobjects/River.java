@@ -22,10 +22,7 @@ public class River extends Fixed
         this.color = ColorUtil.BLUE;
         this.location = new Point2D(0, worldSize.getHeight());
         this.dimension =  new Dimension(worldSize.getWidth(),worldSize.getHeight());
-
-
     }
-
 
     public int getLowerBoarder()
     {
@@ -48,8 +45,5 @@ public class River extends Fixed
         g.setColor(ColorUtil.GREEN);
         lowerBoarder = y+125;
         upperBoarder = y-10;
-        g.drawString("lower",100,y+125);
-        g.drawString("upper",100,y-10);
-
     }
 }

@@ -38,7 +38,6 @@ public class GameWorld {
 //
 //    }
 
-
     public void init() {
         helipad = new Helipad(worldSize);
         river = new River(worldSize);
@@ -134,7 +133,6 @@ public class GameWorld {
         {
             winGame();
         }
-
     }
 
     public void loseGame()

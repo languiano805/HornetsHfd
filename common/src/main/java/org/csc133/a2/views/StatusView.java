@@ -19,6 +19,7 @@ public class StatusView extends Container
     public StatusView(GameWorld gw)
     {
         this.gw = gw;
+        this.getStyle().setBgTransparency(255);
         this.setLayout(new GridLayout(2,7));
         this.add("HEADING");
         this.add("SPEED");
@@ -54,7 +55,5 @@ public class StatusView extends Container
         fireSizeCount.setText(gw.getNumberOfFireCount());
         damageCount.setText(gw.getNumberOfDamage());
         lossCount.setText(gw.getNumberOfLoss());
-
     }
-
 }

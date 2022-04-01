@@ -41,19 +41,14 @@ public class Game extends Form implements Runnable {
         timer.schedule(100, true, this);
         this.getAllStyles().setBgColor(ColorUtil.BLACK);
         this.show();
-
-
     }
-
 
     @Override
     public void run() {
         gw.tick();
-        //statusView.update();
+        statusView.update();
         repaint();
     }
-
-
 
     public void paint(Graphics g) {
         super.paint(g);

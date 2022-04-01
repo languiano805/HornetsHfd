@@ -174,8 +174,6 @@ public class Helicopter extends GameObject implements Steerable
         return water;
     }
 
-
-
     @Override
     public void draw(Graphics g, Point containerOrigin) {
         //for circle
@@ -190,17 +188,16 @@ public class Helicopter extends GameObject implements Steerable
         int x3 = (int) (containerOrigin.getX() + lineEndPoint.getX());
         int y3 = (int) (containerOrigin.getY() + lineEndPoint.getY());
 
+        g.setColor(color);
+
         g.drawString("W: " + water, x2+35, y2+35);
         g.drawString("F: " + fuel, x2+35, y2+60);
 
-        g.setColor(color);
+
         g.drawLine(x2,y2,x3,y3);
         g.fillArc(x,y,w,h,0,360);
 
         centerOfCircleX = x2;
         centerOfCircleY = y2;
     }
-
-
-
 }

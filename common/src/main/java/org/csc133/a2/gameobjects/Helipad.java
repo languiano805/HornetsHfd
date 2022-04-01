@@ -68,9 +68,5 @@ public class Helipad extends Fixed
         g.drawRect(x,y,w,h,5);
         g.drawArc((int)(x*1.01),(int)(y*1.005),(int)(sizeOfHelipad*0.9),
                 (int)(sizeOfHelipad*0.9),0,360);
-        g.drawString("top", getRight()/2+sizeOfHelipad/2, getTop());
-        g.drawString("bottom", getRight()/2+sizeOfHelipad/2, getBottom());
-        g.drawString("right", getRight(), getTop()/2+sizeOfHelipad/2);
-        g.drawString("left", getLeft(), getBottom()/2+sizeOfHelipad/2);
     }
 }
