@@ -13,6 +13,7 @@ public class CockPitDisplay extends Fixed{
     private Buildings buildings;
     private int totalValueOfBuildings;
 
+
     public CockPitDisplay(Dimension worldSize, Helicopter helicopter, Fires fires, Buildings buildings){
         this.worldSize = worldSize;
         this.color = ColorUtil.GREEN;
@@ -28,15 +29,15 @@ public class CockPitDisplay extends Fixed{
         }
     }
 
-    public int getFiresSize()
-    {
-        int totalFireSize = 0;
-        for(Fire flame : fires)
-        {
-            totalFireSize+=flame.getFireSize();
-        }
-        return totalFireSize;
-    }
+//    public int getFiresSize()
+//    {
+//        int totalFireSize = 0;
+//        for(Fire flame : fires)
+//        {
+//            totalFireSize+=flame.getFireSize();
+//        }
+//        return totalFireSize;
+//    }
 
     @Override
     public void draw(Graphics g, Point containerOrigin) {
@@ -46,8 +47,8 @@ public class CockPitDisplay extends Fixed{
         g.drawString("SPEED: " + helicopter.getSpeed(), x,y+30);
         g.drawString("FUEL: " + helicopter.getFuel(), x,y+60);
         g.drawString("FIRES: " + fires.size(), x,y+90);
-        g.drawString("FIRE SIZE: " + getFiresSize(), x,y+120);
-        g.drawString("DAMAGE: " + GameWorld.getTotalPercentageOfBuildingDamage(), x,y+150);
+        //g.drawString("FIRE SIZE: " + getFiresSize(), x,y+120);
+        //g.drawString("DAMAGE: " + GameWorld.getTotalPercentageOfBuildingDamage(), x,y+150);
         g.drawString("LOSS: ", x,y+180);
     }
 }

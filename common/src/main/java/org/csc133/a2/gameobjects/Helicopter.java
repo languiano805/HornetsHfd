@@ -1,7 +1,6 @@
 package org.csc133.a2.gameobjects;
 
 import com.codename1.charts.util.ColorUtil;
-import com.codename1.ui.Display;
 import com.codename1.ui.Graphics;
 import com.codename1.ui.geom.Dimension;
 import com.codename1.ui.geom.Point;
@@ -30,6 +29,8 @@ public class Helicopter extends GameObject implements Steerable
     private River river;
     private Helipad helipad;
 
+    private int heading;
+
     private int centerOfCircleX;
     private int centerOfCircleY;
 
@@ -45,6 +46,7 @@ public class Helicopter extends GameObject implements Steerable
         this.color = ColorUtil.YELLOW;
         this.dimension = new Dimension(size,size);
         distance = size*2;
+        heading = 0;
         rotateAmount = 0;
         this.location = new Point2D((int)(worldSize.getWidth()/2-dimension.getWidth()/2)
                 ,(int)(worldSize.getHeight() - worldSize.getHeight()/5.5));
@@ -78,6 +80,7 @@ public class Helicopter extends GameObject implements Steerable
                 * Math.sin(rotateAmount)) + centerOfCircle.getX(),
                 (int)(((distance)* -Math.cos(rotateAmount))
                         +centerOfCircle.getY()));
+        setHeading(1);
     }
 
     @Override
@@ -87,6 +90,7 @@ public class Helicopter extends GameObject implements Steerable
         lineEndPoint = new Point2D((int)(((distance) * Math.sin(rotateAmount)) + centerOfCircle.getX()),
                 (int)((((distance)* -Math.cos(rotateAmount))
                         +centerOfCircle.getY())));
+        setHeading(0);
     }
     public void increaseSpeed()
     {
@@ -135,6 +139,32 @@ public class Helicopter extends GameObject implements Steerable
         return result;
     }
 
+    private void setHeading(int x)
+    {
+        if(x == 0)
+        {
+            if(heading == 330)
+            {
+                heading = 0;
+            }
+            else
+            {
+                heading+=30;
+            }
+        }
+        else
+        {
+            if(heading == 0)
+            {
+                heading = 330;
+            }
+            else
+            {
+                heading -= 30;
+            }
+        }
+    }
+
     public Boolean aboveFire(Fire fire)
     {
         Boolean result = false;
@@ -172,6 +202,11 @@ public class Helicopter extends GameObject implements Steerable
 
     public int waterAmount() {
         return water;
+    }
+
+    public int getHeading()
+    {
+        return heading;
     }
 
     @Override

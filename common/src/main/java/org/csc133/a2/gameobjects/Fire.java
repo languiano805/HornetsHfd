@@ -55,10 +55,14 @@ public class Fire extends Fixed
 
     public void grow()
     {
-        Random rand = new Random();
-        if(rand.nextInt(35) == 10) {
-            size += rand.nextInt(5);
+        if(!building.isBuildingDestroyed())
+        {
+            Random rand = new Random();
+            if(rand.nextInt(35) == 10) {
+                size += rand.nextInt(10);
+            }
         }
+
     }
 
     public int setXLocation()
@@ -77,13 +81,13 @@ public class Fire extends Fixed
 
     public void fireReduce(int water)
     {
-       if(water * .05 > getFireSize())
+       if(water * .07 > getFireSize())
        {
            size = 1;
        }
        else
        {
-           size -= water *.05;
+           size -= water *.07;
        }
     }
 

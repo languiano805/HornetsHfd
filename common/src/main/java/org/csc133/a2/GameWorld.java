@@ -24,12 +24,13 @@ public class GameWorld {
     private Building building;
     private Building building2;
     private Building building3;
-    private CockPitDisplay fakeCockPit;
+   // private CockPitDisplay fakeCockPit;
 
+    private int numberOfExtinguishedFires;
 
-    private static int totalValueOfBuildings;
+    private  int totalValueOfBuildings;
    private Fires fires;
-   private static Buildings buildings;
+   private  Buildings buildings;
 
    private ArrayList<GameObject> gameObjects;
 
@@ -72,12 +73,12 @@ public class GameWorld {
 
         for(Building build : buildings)
         {
-            totalValueOfBuildings += build.getBuildingValue();
+            totalValueOfBuildings += build.getOriginalValueOfBuilding();
         }
 
         helicopter = new Helicopter(worldSize, river, helipad);
 
-        fakeCockPit = new CockPitDisplay(worldSize, helicopter,fires,buildings);
+        //fakeCockPit = new CockPitDisplay(worldSize, helicopter,fires,buildings);
 
         gameObjects = new ArrayList<>();
 
@@ -87,12 +88,12 @@ public class GameWorld {
         gameObjects.add(buildings);
         gameObjects.add(fires);
         gameObjects.add(helicopter);
-        gameObjects.add(fakeCockPit);
+       // gameObjects.add(fakeCockPit);
     }
 
     public void tick() {
         int buildingsDestroyedCount = 0;
-        int numberOfExtinguishedFires = 0;
+        numberOfExtinguishedFires = 0;
         int totalBuildingUnits = 0;
         helicopter.reduceFuel();
         helicopter.goForward();
@@ -109,18 +110,18 @@ public class GameWorld {
         }
         if(helicopter.getFuel() <= 10)
         {
-            loseGame();
+            loseGameFuelDepletion();
         }
         for(Building build : buildings)
         {
-            if(build.isBuildingDestoryed())
+            if(build.isBuildingDestroyed())
             {
                 buildingsDestroyedCount++;
             }
         }
         if(buildingsDestroyedCount == 3)
         {
-            loseGame();
+            loseGameBuildingsDestroyed();
         }
         for(Fire flame : fires)
         {
@@ -135,9 +136,20 @@ public class GameWorld {
         }
     }
 
-    public void loseGame()
+    public void loseGameFuelDepletion()
     {
-        if(Dialog.show("Confirm","You Lose :( )", "Exit", "Replay"))
+        if(Dialog.show("Confirm","You Lose :( \n You ran out of fuel)", "Exit", "Replay"))
+        {
+            quit();
+        }
+        else
+        {
+            new Game();
+        }
+    }
+    public void loseGameBuildingsDestroyed()
+    {
+        if(Dialog.show("Confirm","You Lose :( \n All buildings were destroyed)", "Exit", "Replay"))
         {
             quit();
         }
@@ -166,7 +178,7 @@ public class GameWorld {
 
     /////////////////////////
     public String getNumberOfHeading() {
-        return "0";
+        return String.valueOf(helicopter.getHeading());
     }
 
     public String getNumberOfSpeed() {
@@ -178,15 +190,24 @@ public class GameWorld {
     }
 
     public String getNumberOfFires() {
-        return "0";
+        int count = 0;
+        for(Fire flame : fires)
+        {
+            count++;
+        }
+        return String.valueOf(count - numberOfExtinguishedFires);
     }
 
     public String getNumberOfLoss() {
-        return "0";
+        return String.valueOf(getTotalDamageDoneToBuildings());
     }
 
     public String getNumberOfDamage() {
-        return "0";
+        return getTotalPercentageOfBuildingDamage() + "%";
+    }
+
+    public String  getNumberOfFireSize() {
+        return String.valueOf(getFiresSize());
     }
 
     public void setDimension(Dimension worldSize)
@@ -216,9 +237,7 @@ public class GameWorld {
         Display.getInstance().exitApplication();
     }
 
-    public String  getNumberOfFireCount() {
-        return "0";
-    }
+
 
     //river and helicopter commands
     //
@@ -264,15 +283,35 @@ public class GameWorld {
         }
     }
 
-    public static int getTotalPercentageOfBuildingDamage()
+    public int getTotalPercentageOfBuildingDamage()
     {
         int tempBuildingMaxDamage = 0;
         for(Building build : buildings)
         {
-            tempBuildingMaxDamage += build.getBuildingValue();
+            tempBuildingMaxDamage += build.getPercentageOfDamage();
         }
 
-        return (int) (100-(100*((double)tempBuildingMaxDamage/(double)totalValueOfBuildings)));
+        return tempBuildingMaxDamage/3;
+    }
+
+    public int getFiresSize()
+    {
+        int totalFireSize = 0;
+        for(Fire flame : fires)
+        {
+            totalFireSize+=flame.getFireSize();
+        }
+        return totalFireSize - numberOfExtinguishedFires;
+    }
+
+    public int getTotalDamageDoneToBuildings()
+    {
+        int temp = 0;
+        for(Building buil : buildings)
+        {
+            temp += building.getDamageDoneToBuilding();
+        }
+        return temp;
     }
 
 

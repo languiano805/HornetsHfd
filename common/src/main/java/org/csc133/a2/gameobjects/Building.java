@@ -35,6 +35,8 @@ public class Building extends Fixed {
     private int topBorder;
     private int bottomBorder;
 
+    private int damageDoneToBuilding;
+
     private int compareTotalFireValue;
 
     public Building(Dimension worldSize, int x, int y, int w, int h)
@@ -45,6 +47,7 @@ public class Building extends Fixed {
         this.location = new Point2D(0,worldSize.getHeight());
         this.dimension = new Dimension(worldSize.getWidth(),worldSize.getHeight());
 
+        damageDoneToBuilding = 0;
         compareTotalFireValue = 0;
 
         valueOfBuilding = rand.nextInt(900)+100;
@@ -97,6 +100,12 @@ public class Building extends Fixed {
     public void setValueOfBuilding(int changeInBuildingValue)
     {
         valueOfBuilding-=changeInBuildingValue;
+        damageDoneToBuilding+=changeInBuildingValue;
+    }
+
+    public int getDamageDoneToBuilding()
+    {
+        return damageDoneToBuilding;
     }
 
     public int getPercentageOfDamage()
@@ -109,9 +118,14 @@ public class Building extends Fixed {
         return valueOfBuilding;
     }
 
-    public boolean isBuildingDestoryed()
+    public int getOriginalValueOfBuilding()
     {
-        if(getBuildingValue() == 100)
+        return originalValue;
+    }
+
+    public boolean isBuildingDestroyed()
+    {
+        if(getPercentageOfDamage() >= 100)
         {
             return true;
         }
@@ -130,7 +144,7 @@ public class Building extends Fixed {
         int w2 = dimension.getWidth()/8+w;
         int h2 = (int) (dimension.getHeight()*0.4)+h;
         g.drawRect(x2,y2,w2,h2);
-        g.drawString("V: " + valueOfBuilding, (int) (x2+w2+15), (int) (y2+h2-60));
+        g.drawString("V: " + originalValue, (int) (x2+w2+15), (int) (y2+h2-60));
         g.drawString("D: " + getPercentageOfDamage() + "%", x2+w2+15,y2+h2-35);
 
         leftBorder = x2;
