@@ -105,6 +105,22 @@ public class Building extends Fixed {
         return (int) (100 - (perc*100));
     }
 
+    public int getBuildingValue() {
+        return valueOfBuilding;
+    }
+
+    public boolean isBuildingDestoryed()
+    {
+        if(getBuildingValue() == 100)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
 
     @Override
     public void draw(Graphics g, Point containerOrigin) {

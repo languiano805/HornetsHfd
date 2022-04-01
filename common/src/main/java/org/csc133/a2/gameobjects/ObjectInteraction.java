@@ -5,6 +5,8 @@ import com.codename1.ui.geom.Point;
 
 public class ObjectInteraction extends Fixed{
 
+
+
    public static void changeBuildingValue(Fires fires){
        int totalFireDamage = 0;
        Building compareBuild = fires.get(0).getBuilding();
@@ -25,6 +27,11 @@ public class ObjectInteraction extends Fixed{
                totalFireDamage = flame.getMaxFireSize();
            }
        }
+   }
+
+   public static void totalDamageOfBuildings(Buildings buildings)
+   {
+
    }
     @Override
     public void draw(Graphics g, Point containerOrigin) {

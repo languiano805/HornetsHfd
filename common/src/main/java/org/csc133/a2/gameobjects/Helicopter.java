@@ -28,12 +28,14 @@ public class Helicopter extends GameObject implements Steerable
     private double rotateAmount;
     private int distance;
     private River river;
+    private Helipad helipad;
 
     private int centerOfCircleX;
     private int centerOfCircleY;
 
-    public Helicopter(Dimension worldSize, River river)
+    public Helicopter(Dimension worldSize, River river, Helipad helipad)
     {
+        this.helipad = helipad;
         this.river = river;
         size = 34;
         water = 0;
@@ -143,6 +145,16 @@ public class Helicopter extends GameObject implements Steerable
         return result;
     }
 
+    public Boolean isHelicopterAboveHelipad()
+    {
+        Boolean result = false;
+        if(centerOfCircleX > helipad.getLeft() && centerOfCircleX < helipad.getRight() && centerOfCircleY > helipad.getTop()
+                && centerOfCircleY  < helipad.getBottom()){
+            result = true;
+        }
+        return result;
+    }
+
     public void waterRefill()
     {
         if(speed <= 2)
@@ -161,6 +173,8 @@ public class Helicopter extends GameObject implements Steerable
     public int waterAmount() {
         return water;
     }
+
+
 
     @Override
     public void draw(Graphics g, Point containerOrigin) {

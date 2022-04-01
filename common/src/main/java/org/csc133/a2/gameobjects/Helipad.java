@@ -19,6 +19,11 @@ public class Helipad extends Fixed
     private Point helipadCenter;
     private int sizeOfHelipad;
 
+    private int left;
+    private int right;
+    private int bottom;
+    private int top;
+
     //need to watch how he draws the cloud 
     public Helipad(Dimension worldSize) {
         this.worldSize = worldSize;
@@ -32,15 +37,22 @@ public class Helipad extends Fixed
                 DISP_H - DISP_H / 7 - sizeOfHelipad / 2);
     }
 
-//    public void drawHelipad(Graphics g) {
-//        g.setColor(ColorUtil.GRAY);
-//        g.drawArc(helipadCenter.getX(), helipadCenter.getY(),
-//                sizeOfHelipad, sizeOfHelipad, 0, 360);
-//        //CHANGE THE -10 NEED TO MAKE IT SCALABLE
-//        g.drawRect(helipadCenter.getX() - 10, helipadCenter.getY() - 10,
-//                (int) (sizeOfHelipad * 1.15), (int) (sizeOfHelipad * 1.15), 5);
-//
-//    }
+    public int getLeft()
+    {
+        return left;
+    }
+    public int getRight()
+    {
+        return right;
+    }
+    public int getTop()
+    {
+        return top;
+    }
+    public int getBottom()
+    {
+        return bottom;
+    }
 
     @Override
     public void draw(Graphics g, Point containerOrigin) {
@@ -49,8 +61,16 @@ public class Helipad extends Fixed
         int y = (int) (containerOrigin.getY() + location.getY());
         int w = sizeOfHelipad;
         int h = sizeOfHelipad;
+        left = x;
+        top = y;
+        right = left+sizeOfHelipad;
+        bottom = top+sizeOfHelipad;
         g.drawRect(x,y,w,h,5);
         g.drawArc((int)(x*1.01),(int)(y*1.005),(int)(sizeOfHelipad*0.9),
                 (int)(sizeOfHelipad*0.9),0,360);
+        g.drawString("top", getRight()/2+sizeOfHelipad/2, getTop());
+        g.drawString("bottom", getRight()/2+sizeOfHelipad/2, getBottom());
+        g.drawString("right", getRight(), getTop()/2+sizeOfHelipad/2);
+        g.drawString("left", getLeft(), getBottom()/2+sizeOfHelipad/2);
     }
 }

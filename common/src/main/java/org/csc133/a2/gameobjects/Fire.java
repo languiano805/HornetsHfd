@@ -36,7 +36,7 @@ public class Fire extends Fixed
 //       value = rand.nextInt(900) + 100;
 //       originalValue = value;
 
-       percentage = rand.nextInt(85)+5;
+       percentage = rand.nextInt(50)+15;
        percentageButDouble = percentage/100.0;
        otherPercentage = rand.nextInt(97)+2;
        otherPercentageButDouble = otherPercentage/100.0;
@@ -56,7 +56,7 @@ public class Fire extends Fixed
     public void grow()
     {
         Random rand = new Random();
-        if(rand.nextInt(15) == 10) {
+        if(rand.nextInt(35) == 10) {
             size += rand.nextInt(5);
         }
     }
@@ -73,16 +73,6 @@ public class Fire extends Fixed
         int areaOfBuilding = building.getBottomBorder() - building.getTopBuildingBorder();
         int variableIllUseForLocation = (int) (areaOfBuilding*otherPercentageButDouble);
         return building.getTopBuildingBorder()+variableIllUseForLocation;
-    }
-
-    public int getBurnDamage()
-    {
-        int temp = size;
-        if(temp > maxBurn)
-        {
-            maxBurn = temp;
-        }
-        return maxBurn;
     }
 
     public void fireReduce(int water)
@@ -132,6 +122,15 @@ public class Fire extends Fixed
     public int getMaxFireSize()
     {
         return maxFireSize;
+    }
+
+    public boolean isExtinguished()
+    {
+        if(size <= 1)
+        {
+            return true;
+        }
+        return false;
     }
 
     @Override

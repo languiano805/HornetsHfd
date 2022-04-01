@@ -1,5 +1,6 @@
 package org.csc133.a2;
 
+import com.codename1.ui.Dialog;
 import com.codename1.ui.Display;
 import com.codename1.ui.geom.Dimension;
 import org.csc133.a2.gameobjects.*;
@@ -24,10 +25,11 @@ public class GameWorld {
     private Building building2;
     private Building building3;
     private CockPitDisplay fakeCockPit;
-    private ObjectInteraction objectInteraction;
 
+
+    private static int totalValueOfBuildings;
    private Fires fires;
-   private Buildings buildings;
+   private static Buildings buildings;
 
    private ArrayList<GameObject> gameObjects;
 
@@ -55,10 +57,6 @@ public class GameWorld {
         fire5 = new Fire(worldSize, building3);
         fire6 = new Fire(worldSize, building3);
 
-
-
-
-
         buildings = new Buildings();
         fires = new Fires();
 
@@ -73,11 +71,17 @@ public class GameWorld {
         buildings.add(building2);
         buildings.add(building3);
 
-        helicopter = new Helicopter(worldSize, river);
+        for(Building build : buildings)
+        {
+            totalValueOfBuildings += build.getBuildingValue();
+        }
+
+        helicopter = new Helicopter(worldSize, river, helipad);
 
         fakeCockPit = new CockPitDisplay(worldSize, helicopter,fires,buildings);
 
         gameObjects = new ArrayList<>();
+
 
         gameObjects.add(helipad);
         gameObjects.add(river);
@@ -88,6 +92,9 @@ public class GameWorld {
     }
 
     public void tick() {
+        int buildingsDestroyedCount = 0;
+        int numberOfExtinguishedFires = 0;
+        int totalBuildingUnits = 0;
         helicopter.reduceFuel();
         helicopter.goForward();
         for(Fire flame : fires)
@@ -97,10 +104,62 @@ public class GameWorld {
             }
             flame.setMaxFireSize();
         }
-        ObjectInteraction.changeBuildingValue(fires);
+        changeBuildingValue(fires);
+        {
+
+        }
+        if(helicopter.getFuel() <= 10)
+        {
+            loseGame();
+        }
+        for(Building build : buildings)
+        {
+            if(build.isBuildingDestoryed())
+            {
+                buildingsDestroyedCount++;
+            }
+        }
+        if(buildingsDestroyedCount == 3)
+        {
+            loseGame();
+        }
+        for(Fire flame : fires)
+        {
+            if(flame.isExtinguished())
+            {
+                numberOfExtinguishedFires++;
+            }
+        }
+        if(numberOfExtinguishedFires >= 6 && helicopter.isHelicopterAboveHelipad())
+        {
+            winGame();
+        }
 
     }
 
+    public void loseGame()
+    {
+        if(Dialog.show("Confirm","You Lose :( )", "Exit", "Replay"))
+        {
+            quit();
+        }
+        else
+        {
+            new Game();
+        }
+    }
+
+    public void winGame()
+    {
+        if(Dialog.show("Confirm", "You win Congrats \n You're final score was " + helicopter.getFuel(), "Exit", "Replay"))
+        {
+            quit();
+        }
+        else
+        {
+            new Game();
+        }
+    }
 
     public ArrayList<GameObject> getGameObjectCollection()
     {
@@ -183,6 +242,39 @@ public class GameWorld {
             }
         }
         helicopter.dropWater();
+    }
+
+    public void changeBuildingValue(Fires fires){
+        int totalFireDamage = 0;
+        Building compareBuild = fires.get(0).getBuilding();
+        for(Fire flame : fires)
+        {
+            if(compareBuild == flame.getBuilding())
+            {
+                totalFireDamage+=flame.getMaxFireSize();
+                if(flame == fires.get(fires.size()-1))
+                {
+                    compareBuild.editBuildingValue(totalFireDamage);
+                }
+            }
+            else
+            {
+                compareBuild.editBuildingValue(totalFireDamage);
+                compareBuild = flame.getBuilding();
+                totalFireDamage = flame.getMaxFireSize();
+            }
+        }
+    }
+
+    public static int getTotalPercentageOfBuildingDamage()
+    {
+        int tempBuildingMaxDamage = 0;
+        for(Building build : buildings)
+        {
+            tempBuildingMaxDamage += build.getBuildingValue();
+        }
+
+        return (int) (100-(100*((double)tempBuildingMaxDamage/(double)totalValueOfBuildings)));
     }
 
 
