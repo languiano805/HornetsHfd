@@ -17,6 +17,5 @@ public abstract class GameObject implements Drawable
     Point2D location;
     Dimension worldSize;
     Dimension dimension;
-
 }
 

@@ -3,22 +3,12 @@ package org.csc133.a2.views;
 import com.codename1.ui.Button;
 import com.codename1.ui.Container;
 import com.codename1.ui.Label;
-import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.GridLayout;
 import org.csc133.a2.GameWorld;
 import org.csc133.a2.commands.*;
 
-import javax.swing.border.Border;
-
 public class ControlCluster extends Container {
     GameWorld gw;
-//    Button leftButton;
-//    Button rightButton;
-//    Button fightButton;
-//    Button exitButton;
-//    Button drinkButton;
-//    Button brakeButton;
-//    Button accelButton;
 
     public ControlCluster(GameWorld gw) {
         this.gw = gw;
@@ -50,17 +40,5 @@ public class ControlCluster extends Container {
         this.add(drinkButton);
         this.add(brakeButton);
         this.add(accelButton);
-//        this.add(BorderLayout.CENTER, exitButton);
-//        this.add(BorderLayout.WEST, leftButton);
-//        this.add(BorderLayout.WEST, rightButton);
-
-
-//        this.add(exitButton);
-//        this.add("rightButton");
-//        this.add("flightButton");
-//        this.add("exitButton");
-//        this.add("drinkButton");
-//        this.add("brakeButton");
-//        this.add("accelButton");
     }
 }

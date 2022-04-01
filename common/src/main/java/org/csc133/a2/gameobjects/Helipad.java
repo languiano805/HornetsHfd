@@ -16,7 +16,6 @@ public class Helipad extends Fixed
     final static int DISP_W = Display.getInstance().getDisplayWidth();
     final static int DISP_H = Display.getInstance().getDisplayHeight();
 
-    private Point helipadCenter;
     private int sizeOfHelipad;
 
     private int left;
@@ -31,10 +30,8 @@ public class Helipad extends Fixed
         sizeOfHelipad = (int) (DISP_W * 0.07);
         this.location = new Point2D(worldSize.getWidth()/2-sizeOfHelipad/2,
                 worldSize.getHeight()*0.7+sizeOfHelipad/2);
-        this.dimension = new Dimension(worldSize.getWidth(),worldSize.getHeight());
-
-        helipadCenter = new Point(DISP_W / 2 - sizeOfHelipad / 2,
-                DISP_H - DISP_H / 7 - sizeOfHelipad / 2);
+        this.dimension = new Dimension(worldSize.getWidth(),
+                worldSize.getHeight());
     }
 
     public int getLeft()

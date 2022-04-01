@@ -94,7 +94,6 @@ public class GameWorld {
     public void tick() {
         int buildingsDestroyedCount = 0;
         numberOfExtinguishedFires = 0;
-        int totalBuildingUnits = 0;
         helicopter.reduceFuel();
         helicopter.goForward();
         for(Fire flame : fires)
@@ -138,7 +137,8 @@ public class GameWorld {
 
     public void loseGameFuelDepletion()
     {
-        if(Dialog.show("Confirm","You Lose :( \n You ran out of fuel)", "Exit", "Replay"))
+        if(Dialog.show("Confirm","You Lose :( \n You ran out of fuel)",
+                "Exit", "Replay"))
         {
             quit();
         }
@@ -149,7 +149,9 @@ public class GameWorld {
     }
     public void loseGameBuildingsDestroyed()
     {
-        if(Dialog.show("Confirm","You Lose :( \n All buildings were destroyed)", "Exit", "Replay"))
+        if(Dialog.show("Confirm","You Lose :( " +
+                        "\n All buildings were destroyed)",
+                "Exit", "Replay"))
         {
             quit();
         }
@@ -161,7 +163,8 @@ public class GameWorld {
 
     public void winGame()
     {
-        if(Dialog.show("Confirm", "You win Congrats \n You're final score was " + helicopter.getFuel(), "Exit", "Replay"))
+        if(Dialog.show("Confirm", "You win Congrats \n You're final score was "
+                + helicopter.getFuel(), "Exit", "Replay"))
         {
             quit();
         }
@@ -307,9 +310,9 @@ public class GameWorld {
     public int getTotalDamageDoneToBuildings()
     {
         int temp = 0;
-        for(Building buil : buildings)
+        for(Building build : buildings)
         {
-            temp += building.getDamageDoneToBuilding();
+            temp += build.getDamageDoneToBuilding();
         }
         return temp;
     }

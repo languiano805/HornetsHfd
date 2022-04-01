@@ -21,7 +21,8 @@ public class River extends Fixed
         this.worldSize = worldSize;
         this.color = ColorUtil.BLUE;
         this.location = new Point2D(0, worldSize.getHeight());
-        this.dimension =  new Dimension(worldSize.getWidth(),worldSize.getHeight());
+        this.dimension =  new Dimension(worldSize.getWidth(),
+                worldSize.getHeight());
     }
 
     public int getLowerBoarder()
@@ -38,7 +39,8 @@ public class River extends Fixed
     public void draw(Graphics g, Point containerOrigin) {
         g.setColor(color);
         int x = containerOrigin.getX() + (int)location.getX();
-        int y = (int) ((containerOrigin.getY() + location.getY() - worldSize.getHeight())*3.5);
+        int y = (int) ((containerOrigin.getY() + location.getY()
+                - worldSize.getHeight())*3.5);
         int w = dimension.getWidth();
         int h = (int) (dimension.getHeight()/8.5);
         g.drawRect(x,y,w, h,3);

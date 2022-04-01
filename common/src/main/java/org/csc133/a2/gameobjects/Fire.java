@@ -20,12 +20,7 @@ public class Fire extends Fixed
     private double percentageButDouble;
     private int otherPercentage;
     private double otherPercentageButDouble;
-    private int maxBurn;
-    private int value;
-    private int damagePercentage;
     private int maxFireSize;
-
-    private int originalValue;
 
     public Fire(Dimension worldSize, Building building) {
         this.building = building;
@@ -33,15 +28,11 @@ public class Fire extends Fixed
 
        size = rand.nextInt(18)+2;
        maxFireSize = size;
-//       value = rand.nextInt(900) + 100;
-//       originalValue = value;
 
        percentage = rand.nextInt(50)+15;
        percentageButDouble = percentage/100.0;
        otherPercentage = rand.nextInt(97)+2;
        otherPercentageButDouble = otherPercentage/100.0;
-
-       //damagePercentage = 0;
 
        this.worldSize = worldSize;
        this.color = ColorUtil.MAGENTA;
@@ -67,15 +58,19 @@ public class Fire extends Fixed
 
     public int setXLocation()
     {
-        int areaOfBuilding = building.getRightBuildingBorder() - building.getLeftBuildingBorder();
-        int variableIllUseForLocation = (int) (areaOfBuilding*percentageButDouble);
+        int areaOfBuilding = building.getRightBuildingBorder()
+                - building.getLeftBuildingBorder();
+        int variableIllUseForLocation =
+                (int) (areaOfBuilding*percentageButDouble);
         return building.getLeftBuildingBorder()+variableIllUseForLocation;
     }
 
     public int setYLocation()
     {
-        int areaOfBuilding = building.getBottomBorder() - building.getTopBuildingBorder();
-        int variableIllUseForLocation = (int) (areaOfBuilding*otherPercentageButDouble);
+        int areaOfBuilding = building.getBottomBorder()
+                - building.getTopBuildingBorder();
+        int variableIllUseForLocation =
+                (int) (areaOfBuilding*otherPercentageButDouble);
         return building.getTopBuildingBorder()+variableIllUseForLocation;
     }
 
@@ -142,13 +137,12 @@ public class Fire extends Fixed
         g.setColor(color);
         if(size>1)
         {
-            g.drawString(String.valueOf(size), setXLocation() + size, setYLocation()+size);
-            g.drawString(String.valueOf(maxFireSize), setXLocation()+size,setYLocation()+size+20 );
+            g.drawString(String.valueOf(size),
+                    setXLocation() + size, setYLocation()+size);
+            g.drawString(String.valueOf(maxFireSize),
+                    setXLocation()+size,setYLocation()+size+20 );
         }
         g.fillArc(setXLocation(),setYLocation(),size,size,0,360);
-
-
         g.setColor(ColorUtil.rgb(255,0,0));
-
     }
 }

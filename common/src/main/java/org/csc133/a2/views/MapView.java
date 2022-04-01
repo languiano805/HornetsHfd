@@ -13,7 +13,6 @@ public class MapView extends Container
     public MapView(GameWorld gw)
     {
         this.gw = gw;
-
     }
 
     @Override

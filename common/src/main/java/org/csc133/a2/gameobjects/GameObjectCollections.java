@@ -3,7 +3,8 @@ package org.csc133.a2.gameobjects;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public abstract class GameObjectCollections<T> extends GameObject implements Iterable<T>
+public abstract class GameObjectCollections<T> extends
+        GameObject implements Iterable<T>
 {
     ArrayList<T> gameObjects;
 

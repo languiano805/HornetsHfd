@@ -22,14 +22,8 @@ public class Building extends Fixed {
     private int y;
     private int w;
     private int h;
-    private int fuel;
-    private int damage;
     private int valueOfBuilding;
     private int originalValue;
-
-    private int temp;
-    private int damageFromGreatestBurn;
-
     private int leftBorder;
     private int rightBorder;
     private int topBorder;
@@ -45,16 +39,14 @@ public class Building extends Fixed {
         this.worldSize = worldSize;
         this.color = ColorUtil.rgb(255,0,0);
         this.location = new Point2D(0,worldSize.getHeight());
-        this.dimension = new Dimension(worldSize.getWidth(),worldSize.getHeight());
+        this.dimension = new Dimension(worldSize.getWidth(),
+                worldSize.getHeight());
 
         damageDoneToBuilding = 0;
         compareTotalFireValue = 0;
 
         valueOfBuilding = rand.nextInt(900)+100;
         originalValue = valueOfBuilding;
-
-        fuel = 25000;
-        damage = 0;
 
         this.x = x;
         this.y = y;
@@ -97,7 +89,7 @@ public class Building extends Fixed {
 
     }
 
-    public void setValueOfBuilding(int changeInBuildingValue)
+    private void setValueOfBuilding(int changeInBuildingValue)
     {
         valueOfBuilding-=changeInBuildingValue;
         damageDoneToBuilding+=changeInBuildingValue;
@@ -151,11 +143,6 @@ public class Building extends Fixed {
         rightBorder = x2+w2;
         topBorder = y2;
         bottomBorder = y2+h2;
-
-//        g.drawString("left " + leftBorder, leftBorder, bottomBorder/2);
-//        g.drawString("right " + rightBorder, rightBorder, bottomBorder/2);
-//        g.drawString("bottom " + bottomBorder, rightBorder/2, bottomBorder);
-//        g.drawString("top " + topBorder, rightBorder/2, topBorder);
     }
 
 }

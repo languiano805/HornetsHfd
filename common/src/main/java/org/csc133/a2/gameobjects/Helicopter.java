@@ -50,11 +50,14 @@ public class Helicopter extends GameObject implements Steerable
         rotateAmount = 0;
         this.location = new Point2D((int)(worldSize.getWidth()/2-dimension.getWidth()/2)
                 ,(int)(worldSize.getHeight() - worldSize.getHeight()/5.5));
-        this.centerOfCircle = new Point2D(location.getX() + (int)(dimension.getWidth()/2),
+        this.centerOfCircle = new Point2D(location.getX()
+                + (int)(dimension.getWidth()/2),
                 location.getY()+(int)(dimension.getHeight()/2));
-        this.lineEndPoint = new Point2D((int) ((distance)*Math.sin(rotateAmount) + centerOfCircle.getX()),
-                (int)((distance)*(-Math.cos(rotateAmount))) + centerOfCircle.getY());
-
+        this.lineEndPoint = new Point2D((int) ((distance)
+                *Math.sin(rotateAmount)
+                + centerOfCircle.getX()),
+                (int)((distance)*(-Math.cos(rotateAmount)))
+                        + centerOfCircle.getY());
     }
 
     public void goForward()
@@ -87,7 +90,8 @@ public class Helicopter extends GameObject implements Steerable
     public void steerRight()
     {
         rotateAmount+=Math.PI/6.0;
-        lineEndPoint = new Point2D((int)(((distance) * Math.sin(rotateAmount)) + centerOfCircle.getX()),
+        lineEndPoint = new Point2D((int)(((distance) * Math.sin(rotateAmount))
+                + centerOfCircle.getX()),
                 (int)((((distance)* -Math.cos(rotateAmount))
                         +centerOfCircle.getY())));
         setHeading(0);
@@ -110,10 +114,6 @@ public class Helicopter extends GameObject implements Steerable
     public String getSpeed()
     {
         return String.valueOf(speed);
-    }
-
-    public int getWater(){
-        return water;
     }
 
     public void reduceFuel()
@@ -168,7 +168,8 @@ public class Helicopter extends GameObject implements Steerable
     public Boolean aboveFire(Fire fire)
     {
         Boolean result = false;
-        if(centerOfCircleX > fire.left() && centerOfCircleX < fire.right() && centerOfCircleY > fire.top()
+        if(centerOfCircleX > fire.left() && centerOfCircleX < fire.right()
+                && centerOfCircleY > fire.top()
         && centerOfCircleY  < fire.bottom()){
             result = true;
         }
@@ -178,7 +179,9 @@ public class Helicopter extends GameObject implements Steerable
     public Boolean isHelicopterAboveHelipad()
     {
         Boolean result = false;
-        if(centerOfCircleX > helipad.getLeft() && centerOfCircleX < helipad.getRight() && centerOfCircleY > helipad.getTop()
+        if(centerOfCircleX > helipad.getLeft()
+                && centerOfCircleX < helipad.getRight()
+                && centerOfCircleY > helipad.getTop()
                 && centerOfCircleY  < helipad.getBottom()){
             result = true;
         }
